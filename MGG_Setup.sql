@@ -941,7 +941,7 @@ DEFAULT_ROLE = 'ACCOUNTADMIN';
     allowed_authentication_secrets = all;
 */
 
-CREATE GIT REPOSITORY mggsnowflake_git 
+CREATE OR REPLACE GIT REPOSITORY mggsnowflake_git 
 	ORIGIN = 'https://github.com/mariogalvis/mggsnowflake' 
 	API_INTEGRATION = 'MGGSNOWFLAKE_GIT';
 
