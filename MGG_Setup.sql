@@ -934,11 +934,12 @@ DEFAULT_ROLE = 'ACCOUNTADMIN';
 
 //Conexión a GIT
 
-create or replace api integration mggsnowflake_git
+/*create or replace api integration mggsnowflake_git
     api_provider = git_https_api
     api_allowed_prefixes = ('https://github.com/mariogalvis/mggsnowflake')
     enabled = true
     allowed_authentication_secrets = all;
+*/
 
 CREATE GIT REPOSITORY mggsnowflake_git 
 	ORIGIN = 'https://github.com/mariogalvis/mggsnowflake' 
@@ -1214,6 +1215,33 @@ CREATE OR REPLACE STAGE MGG_GENAI_AGENT
 COPY FILES INTO @models
 FROM @MGG_GENAI_AGENT
 FILES = ('sales_metrics_model.yaml');
+
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
+
+CREATE OR REPLACE STAGE myimages
+    DIRECTORY = ( ENABLE = true )
+    ENCRYPTION = ( TYPE = 'SNOWFLAKE_SSE' );
+
+CREATE OR REPLACE STAGE MGG_IMAGES
+ URL = 's3://mggsnowflake/images/';
+
+COPY FILES INTO @myimages
+FROM @MGG_IMAGES;
+
+
+CREATE OR REPLACE DATABASE cortex_search_tutorial_db;
+
+CREATE OR REPLACE STAGE FOMC
+    DIRECTORY = (ENABLE = TRUE)
+    ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+
+CREATE OR REPLACE STAGE MGG_GENAI_OBSERVABILITY
+ URL = 's3://mggsnowflake/genaiobservability';
+
+COPY FILES INTO @FOMC
+FROM @MGG_GENAI_OBSERVABILITY;
 
 ALTER WAREHOUSE VW_ADVANCED_ANALYTICS SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 ALTER WAREHOUSE VW_GENAI SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
