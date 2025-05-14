@@ -5,7 +5,7 @@ from snowflake.snowpark.context import get_active_session
 
 DATABASE = "BD_CORTEX_ANALYST"
 SCHEMA = "REVENUE_TIMESERIES_BANCA"
-STAGE = "RAW_DATA"
+STAGE = "MGG_BANCA"
 FILE = "revenue_timeseries.yaml"
 
 def detect_language(text: str) -> str:
