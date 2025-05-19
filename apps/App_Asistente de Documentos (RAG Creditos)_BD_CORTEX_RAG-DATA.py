@@ -44,6 +44,7 @@ def config_options():
 
     st.sidebar.selectbox('Seleccione el modelo:', (
     'llama3.1-405b',
+    'claude-3-7-sonnet',
     'claude-3-5-sonnet',
     'llama4-maverick',
     'mixtral-8x7b',
