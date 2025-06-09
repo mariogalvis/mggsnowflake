@@ -136,7 +136,7 @@ def process_sse_response(response):
 
 def main():
     st.image('https://mgg.com.co/wp-content/uploads/images/logo.png');
-    st.title("Asistente de Ventas Inteligente")
+    st.title("Agente de Ventas Inteligente")
 
     # Sidebar for new chat
     with st.sidebar:
