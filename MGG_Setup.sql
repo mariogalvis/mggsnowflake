@@ -1243,6 +1243,68 @@ CREATE OR REPLACE STAGE MGG_GENAI_OBSERVABILITY
 COPY FILES INTO @FOMC
 FROM @MGG_GENAI_OBSERVABILITY;
 
+--AISQL 24JUN25
+-- Run the following statements to create a database, schema, and a table with data loaded from AWS S3.
+
+CREATE DATABASE IF NOT EXISTS AISQL_DB;
+CREATE SCHEMA IF NOT EXISTS AISQL_SCHEMA;
+CREATE WAREHOUSE IF NOT EXISTS AISQL_WH_S WAREHOUSE_SIZE=SMALL;
+
+USE AISQL_DB.AISQL_SCHEMA;
+USE WAREHOUSE AISQL_WH_S;
+  
+create or replace file format csvformat  
+  skip_header = 1  
+  field_optionally_enclosed_by = '"'  
+  type = 'CSV';  
+
+-- Emails table
+create or replace stage emails_data_stage  
+  file_format = csvformat  
+  url = 's3://sfquickstarts/sfguide_getting_started_with_cortex_aisql/emails/';  
+  
+create or replace TABLE EMAILS (
+	USER_ID NUMBER(38,0),
+	TICKET_ID NUMBER(18,0),
+	CREATED_AT TIMESTAMP_NTZ(9),
+	CONTENT VARCHAR(16777216)
+);
+  
+copy into EMAILS  
+  from @emails_data_stage;
+
+-- Solutions Center Articles table
+
+create or replace stage sc_articles_data_stage  
+  file_format = csvformat  
+  url = 's3://sfquickstarts/sfguide_getting_started_with_cortex_aisql/sc_articles/';  
+
+ create or replace TABLE SOLUTION_CENTER_ARTICLES (
+	ARTICLE_ID VARCHAR(16777216),
+	TITLE VARCHAR(16777216),
+	SOLUTION VARCHAR(16777216),
+	TAGS VARCHAR(16777216)
+);
+
+copy into SOLUTION_CENTER_ARTICLES  
+  from @sc_articles_data_stage;
+
+-- Run the following statement to create a Snowflake managed internal stage to store the sample image files.
+-- create or replace stage AISQL_IMAGE_FILES encryption = (TYPE = 'SNOWFLAKE_SSE') directory = ( ENABLE = true );
+
+CREATE OR REPLACE STAGE AISQL_IMAGE_FILES directory = ( ENABLE = true )
+ URL = 's3://mggsnowflake/aisql/';
+
+--list @AISQL_IMAGE_FILES;
+
+-- Image Files table
+create or replace table IMAGES as
+select to_file(file_url) img_file, 
+    DATEADD(SECOND, UNIFORM(0, 13046400, RANDOM()),
+    TO_TIMESTAMP('2025-01-01 00:00:00')) as created_at,
+    UNIFORM(0, 200, RANDOM()) as user_id,
+    * from directory(@AISQL_DB.AISQL_SCHEMA.AISQL_IMAGE_FILES);
+
 ALTER WAREHOUSE VW_ADVANCED_ANALYTICS SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 ALTER WAREHOUSE VW_GENAI SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 
