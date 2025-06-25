@@ -1290,12 +1290,15 @@ copy into SOLUTION_CENTER_ARTICLES
   from @sc_articles_data_stage;
 
 -- Run the following statement to create a Snowflake managed internal stage to store the sample image files.
--- create or replace stage AISQL_IMAGE_FILES encryption = (TYPE = 'SNOWFLAKE_SSE') directory = ( ENABLE = true );
+create or replace stage AISQL_IMAGE_FILES encryption = (TYPE = 'SNOWFLAKE_SSE') directory = ( ENABLE = true );
 
-CREATE OR REPLACE STAGE AISQL_IMAGE_FILES directory = ( ENABLE = true )
+CREATE OR REPLACE STAGE AISQL_IMAGE_FILES_EXT directory = ( ENABLE = true )
  URL = 's3://mggsnowflake/aisql/';
 
 --list @AISQL_IMAGE_FILES;
+
+COPY FILES INTO @AISQL_IMAGE_FILES
+FROM @AISQL_IMAGE_FILES_EXT;
 
 -- Image Files table
 create or replace table IMAGES as
