@@ -1230,19 +1230,6 @@ CREATE OR REPLACE STAGE MGG_IMAGES
 COPY FILES INTO @myimages
 FROM @MGG_IMAGES;
 
-
-CREATE OR REPLACE DATABASE cortex_search_tutorial_db;
-
-CREATE OR REPLACE STAGE FOMC
-    DIRECTORY = (ENABLE = TRUE)
-    ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
-
-CREATE OR REPLACE STAGE MGG_GENAI_OBSERVABILITY
- URL = 's3://mggsnowflake/genaiobservability';
-
-COPY FILES INTO @FOMC
-FROM @MGG_GENAI_OBSERVABILITY;
-
 --AISQL 24JUN25
 -- Run the following statements to create a database, schema, and a table with data loaded from AWS S3.
 
