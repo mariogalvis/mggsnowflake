@@ -1,84 +1,65 @@
--- Configuración del entorno
+select snowflake.cortex.complete('claude-4-sonnet','que es ABC en Colombia?');
+
+//openai-gpt-4.1
+//https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions
+//ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
+
+//Coloco una pelota en una taza. Coloco la taza dándole la vuelta sobre una mesa. Después de 1 minuto, tomo la taza y la coloco dentro del refrigerador. ¿Dónde está la pelota?
+
+//En cada conversación identifique el nombre del cliente, producto, la razón de la llamada, el problema con el producto, genere un JSON, sin repetir el prompt mensaje
+
+//Crea un código de streamlit donde se muestren dos Campos uno de texto libre y otro un combobox de selección con tres opciones y en la parte de abajo una gráfica que muestre los últimos 3 meses con mediciones aleatorias cada vez que yo hago un cambio en el combobox
+
 USE WAREHOUSE VW_GENAI;
 USE DATABASE BD_AI_CORTEX;
 USE SCHEMA PUBLIC;
 
--- Ejemplo básico de uso de la función Cortex COMPLETE
-SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'que es ABC en Colombia?');
+select * from Call_Transcript_es where language = 'Español' limit 1;
 
--- Consulta básica para obtener un ejemplo de transcripción en español
-SELECT * FROM Call_Transcripts_es 
-WHERE language = 'Español' 
-LIMIT 1;
+//ALTER WAREHOUSE VW_GENAI SET WAREHOUSE_SIZE = 'X-LARGE' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 
--- Traducción de transcripciones del alemán al español
-SELECT transcript, SNOWFLAKE.CORTEX.TRANSLATE(transcript, 'en', 'es')
-FROM call_transcripts 
-WHERE language = 'English';
+select transcript,snowflake.cortex.translate(transcript,'de_DE','es_XX')
+from call_transcripts 
+where language = 'German';
 
--- Análisis de sentimiento para transcripciones en español
-SELECT transcript, SNOWFLAKE.CORTEX.SENTIMENT(transcript) 
-FROM call_transcripts_es 
-WHERE language = 'Español';
+select transcript, snowflake.cortex.sentiment(transcript) 
+from call_transcript_es 
+where language = 'Español';
 
--- Resumen de transcripciones en inglés
-SELECT transcript, SNOWFLAKE.CORTEX.TRANSLATE(SNOWFLAKE.CORTEX.SUMMARIZE(transcript), 'en', 'es')
-FROM call_transcripts_es 
-WHERE language = 'Español' 
-LIMIT 1;
+select transcript,snowflake.cortex.summarize(transcript) 
+from call_transcripts 
+where language = 'English' limit 1;
 
--- Definición de prompt para resúmenes en español con análisis de sentimientos
 SET prompt = 
-'###
-De la transcripción, genera un formato JSON con el resumen traducido a español (menos de 200 palabras), 
-nombre del producto, defecto, sentimiento del cliente (solo malo, neutral, positivo) y la solución al cliente, 
-todo en español.
+'### 
+De la transcripción, genera un formato JSON con el resumen traducido a español menos de 200 palabras, nombre del producto, defecto, sentimiento del cliente sólo decir malo, neutral, positivo y la solución al cliente todo en español.
 ###';
 
--- Generación de resúmenes usando diferentes modelos de lenguaje
-SELECT SNOWFLAKE.CORTEX.COMPLETE('llama3-70b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary
-FROM call_transcripts 
-WHERE language = 'English' 
-LIMIT 1;
+select snowflake.cortex.complete('llama3-70b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from call_transcripts where language = 'English' limit 1;
 
-SELECT SNOWFLAKE.CORTEX.COMPLETE('llama3.1-405b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary
-FROM call_transcripts 
-WHERE language = 'English' 
-LIMIT 1;
+select snowflake.cortex.complete('llama3.1-405b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from call_transcripts where language = 'English' limit 1;
 
-SELECT SNOWFLAKE.CORTEX.COMPLETE('mixtral-8x7b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary
-FROM call_transcripts 
-WHERE language = 'English' 
-LIMIT 1;
+select snowflake.cortex.complete('mixtral-8x7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from call_transcripts where language = 'English' limit 1;
 
-SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary
-FROM call_transcripts 
-WHERE language = 'English' 
-LIMIT 1;
+select snowflake.cortex.complete('claude-3-5-sonnet',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from call_transcripts where language = 'English' limit 1;
 
-SELECT SNOWFLAKE.CORTEX.COMPLETE('gemma-7b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary
-FROM call_transcripts 
-WHERE language = 'English' 
-LIMIT 1;
+select snowflake.cortex.complete('gemma-7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from call_transcripts where language = 'English' limit 1;
 
--- Análisis de sentimiento detallado para reseñas, categorizando por diferentes aspectos
-SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(
-'Devuelve el sentimiento del cliente para la siguiente reseña: 
-Abrieron una pizzería nueva en el barrio y obviamente tocaba darle la probada. 
-La pizza se demoró un huevo, pero el sabor... ¡una delicia total! 
-Casi que me sentí en Italia. Eso sí, el precio sí me dejó pensándolo. 
-Muy rica, pero toca guardarla pa cuando uno se quiera dar un gustico. 
-Quedé feliz, pero con el bolsillo apretado.',
-['calidad_comida', 'sabor_comida', 'tiempo_espera', 'precio_comida']
-) AS sentimiento_respuesta;
+/* https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions */
 
--- Creación de tabla para almacenar correos sin procesar
+SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT('Devuelve el sentimiento del cliente para la siguiente reseña: Abrieron una pizzería nueva en el barrio y obviamente tocaba darle la probada. La pizza se demoró un huevo, pero el sabor... ¡una delicia total! Casi que me sentí en Italia. Eso sí, el precio sí me dejó pensándolo. Muy rica, pero toca guardarla pa cuando uno se quiera dar un gustico. Quedé feliz, pero con el bolsillo apretado.
+', ['calidad_comida', 'sabor_comida', 'tiempo_espera', 'precio_comida']) AS sentimiento_respuesta;
+
 CREATE OR REPLACE TABLE EMAIL_RAW (
   id INT,
   email_contents STRING
 );
 
--- Inserción de ejemplo de correo en la tabla
 INSERT INTO EMAIL_RAW (id, email_contents)
 VALUES (1, '
 Fecha: 12 de abril de 2025, 10:22 a. m.
@@ -98,20 +79,16 @@ Cordialmente,
 Mario Galvis
 ');
 
--- Análisis de sentimiento de correos electrónicos, categorizando por 'Marca' y 'Calidad del producto'
 SELECT *,
   SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(email_contents, 
     ['Marca', 'Calidad del producto']) AS sentimiento_respuesta
 FROM EMAIL_RAW;
 
-DROP TABLE EMAIL_RAW;
-
--- Ejemplo de extracción de entidades desde texto estructurado en JSON
 SELECT SNOWFLAKE.CORTEX.COMPLETE('mistral-large2',
   [
     {
       'role': 'user',
-      'content': 'Extrae el nombre, apellido, nacionalidad, donde trabaja, y antigüedad de la siguiente oración: "Mario Galvis es Colombiano y trabaja en Snowflake hace 2 años"'
+      'content': 'Extrae el nombre, apellido, nacionalidad, donde trabaja, y antiguedad de la siguiente oración: "Mario Galvis es Colombiano y trabaja en Snowflake hace 2 años"'
     }
   ],
   {
@@ -134,15 +111,4 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE('mistral-large2',
   }
 );
 
--- Pregunta básica para obtener el número de llamadas por tipo de defecto
 /* dime cuantas llamadas recibimos por tipo de defecto? */
-
-//https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions
-//ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
-
-//Coloco una pelota en una taza. Coloco la taza dándole la vuelta sobre una mesa. Después de 1 minuto, tomo la taza y la coloco dentro del refrigerador. ¿Dónde está la pelota?
-
-//En cada conversación identifique el nombre del cliente, producto, la razón de la llamada, el problema con el producto, genere un JSON, sin repetir el prompt mensaje
-
-//Crea un código de streamlit donde se muestren dos Campos uno de texto libre y otro un combobox de selección con tres opciones y en la parte de abajo una gráfica que muestre los últimos 3 meses con mediciones aleatorias cada vez que yo hago un cambio en el combobox
-
