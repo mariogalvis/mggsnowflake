@@ -1100,6 +1100,8 @@ FROM
           try_parse_json(lower(sentiment_categories)):food_delivery_time::varchar AS food_delivery_time
    FROM ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT);
 
+
+-- Start AI Agent
 -- Create database and schema
 CREATE OR REPLACE DATABASE sales_intelligence;
 CREATE OR REPLACE SCHEMA sales_intelligence.data;
@@ -1215,6 +1217,9 @@ CREATE OR REPLACE STAGE MGG_GENAI_AGENT
 COPY FILES INTO @models
 FROM @MGG_GENAI_AGENT
 FILES = ('sales_metrics_model.yaml');
+-- End AI Agent
+
+-- Start Multimodal GenAI
 
 USE WAREHOUSE VW_GENAI;
 USE DATABASE BD_EMPRESA;
@@ -1229,8 +1234,9 @@ CREATE OR REPLACE STAGE MGG_IMAGES
 
 COPY FILES INTO @myimages
 FROM @MGG_IMAGES;
+-- End Multimodal GenAI
 
---AISQL 24JUN25
+--Start AISQL 24JUN25
 -- Run the following statements to create a database, schema, and a table with data loaded from AWS S3.
 
 CREATE DATABASE IF NOT EXISTS AISQL_DB;
@@ -1294,6 +1300,8 @@ select to_file(file_url) img_file,
     TO_TIMESTAMP('2025-01-01 00:00:00')) as created_at,
     UNIFORM(0, 200, RANDOM()) as user_id,
     * from directory(@AISQL_DB.AISQL_SCHEMA.AISQL_IMAGE_FILES);
+
+-- End AISQL
 
 ALTER WAREHOUSE VW_ADVANCED_ANALYTICS SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 ALTER WAREHOUSE VW_GENAI SET WAREHOUSE_SIZE = 'X-SMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
