@@ -849,6 +849,8 @@ COPY FILES INTO @docs
 FROM @MGG_RAG
 FILES = ('Cartilla practica para solicitud de credito.pdf');
 
+ALTER STAGE docs REFRESH;
+
 ALTER WAREHOUSE VW_GENAI SET WAREHOUSE_SIZE = 'X-LARGE' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
 
 insert into docs_chunks_table (relative_path, size, file_url,
@@ -1217,6 +1219,8 @@ CREATE OR REPLACE STAGE MGG_GENAI_AGENT
 COPY FILES INTO @models
 FROM @MGG_GENAI_AGENT
 FILES = ('sales_metrics_model.yaml');
+
+ALTER STAGE models REFRESH;
 -- End AI Agent
 
 -- Start Multimodal GenAI
@@ -1234,6 +1238,8 @@ CREATE OR REPLACE STAGE MGG_IMAGES
 
 COPY FILES INTO @myimages
 FROM @MGG_IMAGES;
+
+ALTER STAGE myimages REFRESH;
 -- End Multimodal GenAI
 
 --Start AISQL 24JUN25
@@ -1292,6 +1298,8 @@ CREATE OR REPLACE STAGE AISQL_IMAGE_FILES_EXT directory = ( ENABLE = true )
 
 COPY FILES INTO @AISQL_IMAGE_FILES
 FROM @AISQL_IMAGE_FILES_EXT;
+
+ALTER STAGE ISQL_IMAGE_FILES REFRESH;
 
 -- Image Files table
 create or replace table IMAGES as
