@@ -790,7 +790,7 @@ from
 ;
 
 CREATE OR REPLACE DYNAMIC TABLE salesreport
-    LAG = '1 MINUTE'
+    LAG = '90 DAYS'
     WAREHOUSE=VW_ADVANCED_ANALYTICS
 AS
     select
