@@ -867,7 +867,7 @@ create or replace CORTEX SEARCH SERVICE CC_SEARCH_SERVICE_CS
 ON chunk
 ATTRIBUTES category
 warehouse = VW_GENAI
-TARGET_LAG = '90 day'
+TARGET_LAG = '90 days'
 as (
     select chunk,
         relative_path,
@@ -1193,7 +1193,7 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE sales_conversation_search
   ON transcript_text
   ATTRIBUTES customer_name, deal_stage, sales_rep, product_line, conversation_date, deal_value
   WAREHOUSE = sales_intelligence_wh
-  TARGET_LAG = '90 day'
+  TARGET_LAG = '90 days'
   AS (
     SELECT
         conversation_id,
