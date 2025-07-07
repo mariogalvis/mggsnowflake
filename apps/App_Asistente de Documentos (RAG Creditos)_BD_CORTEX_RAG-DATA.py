@@ -44,9 +44,14 @@ def config_options():
 
     st.sidebar.selectbox('Seleccione el modelo:', (
     'llama3.1-405b',
+    'claude-4-sonnet',
+    'claude-4-opus',
+    'openai-gpt-4.1',
+    'openai-o4-mini',
+    'llama4-maverick',
+    'llama4-scout',
     'claude-3-7-sonnet',
     'claude-3-5-sonnet',
-    'llama4-maverick',
     'mixtral-8x7b',
     'mistral-large2',
     'llama3.1-70b',
