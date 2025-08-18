@@ -4,7 +4,7 @@ SELECT snowflake.cortex.complete('openai-gpt-5', 'que es ABC en Colombia?');
 USE DATABASE BD_AI_CORTEX;
 USE SCHEMA PUBLIC;
 
-CREATE OR REPLACE STAGE LLAMADAS ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+--CREATE OR REPLACE STAGE LLAMADAS ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
 
 // De Audio a Texto desde SQL //
 SELECT AI_TRANSCRIBE(TO_FILE('@LLAMADAS', '081725_1349.mp3'),{'timestamp_granularity': 'speaker'});
