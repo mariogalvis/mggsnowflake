@@ -5,7 +5,7 @@ import json
 import re
 
 # App configuration
-st.set_page_config(page_title="🐳💬 DeepSeek R1 Chatbot", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Gen AI Chatbot Empresarial", initial_sidebar_state="expanded")
 session = get_active_session()
 
 st.image('https://mgg.com.co/wp-content/uploads/images/logo.png');
@@ -48,15 +48,15 @@ def generate_deepseek_response(prompt, **params):
     prompt_json = escape_sql_string(json.dumps(prompt_data))
     response = session.sql(
         "select snowflake.cortex.complete(?, ?)", 
-        params=['deepseek-r1', prompt_json]
+        params=['openai-gpt-5', prompt_json]
     ).collect()[0][0]
     
     return response
 
 # Sidebar UI
 with st.sidebar:
-    st.title('🐳💬 DeepSeek R1 Chatbot')
-    st.write('Este chatbot se crea utilizando el modelo DeepSeek R1 LLM a través de Snowflake Cortex.')
+    st.title('Gen AI Chatbot Empresarial')
+    st.write('Este chatbot se crea utilizando LLMs Seguros y Gobernados a través de Snowflake Cortex.')
     
     st.subheader('⚙️ Parámetros del Modelo')
     params = {
