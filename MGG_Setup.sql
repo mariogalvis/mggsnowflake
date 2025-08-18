@@ -400,6 +400,17 @@ CREATE or REPLACE table CALL_TRANSCRIPTS_ES (
 COPY into CALL_TRANSCRIPTS_ES
   from @MGG_DATA_TRANSCRIPTS;
 
+CREATE OR REPLACE STAGE LLAMADAS 
+  DIRECTORY = (enable = true) 
+  ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+
+CREATE OR REPLACE STAGE MGG_LLAMADAS
+ URL = 's3://mggsnowflake/snowint';
+
+COPY FILES INTO @LLAMADAS
+FROM @MGG_LLAMADAS;
+
+ALTER STAGE LLAMADAS REFRESH;
 
 //RAG
 --https://quickstarts.snowflake.com/guide/ask_questions_to_your_own_documents_with_snowflake_cortex_search/index.html#1
