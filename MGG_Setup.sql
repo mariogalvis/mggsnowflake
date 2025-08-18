@@ -824,6 +824,14 @@ CREATE OR REPLACE STAGE tb_doc_ai.doc_ai_schema.doc_ai_stage
   DIRECTORY = (enable = true)
   ENCRYPTION = (type = 'snowflake_sse');
 
+CREATE OR REPLACE STAGE MGG_DOC_AI
+ URL = 's3://mggsnowflake/docai/extraction';
+
+COPY FILES INTO @doc_ai_stage
+FROM @MGG_DOC_AI;
+
+ALTER STAGE doc_ai_stage REFRESH;
+
 -- SCHEMA FOR THE STREAMLIT APP
 CREATE OR REPLACE SCHEMA tb_doc_ai.streamlit_schema;
 
