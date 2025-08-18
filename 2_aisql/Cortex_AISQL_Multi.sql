@@ -71,3 +71,45 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE(
 
 -- Ejemplo de razonamiento lógico para evaluación de modelos Playground
 -- Coloco una pelota en una taza. Coloco la taza dándole la vuelta sobre una mesa. Después de 1 minuto, tomo la taza y la coloco dentro del refrigerador.¿Dónde está la pelota?
+
+
+-- Configuración del entorno de trabajo
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
+
+
+-- Extracción de datos desde una imagen de cédula
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'pixtral-large',
+    'Dame todos los datos de esta cédula, en este orden: número de cédula, nombre, apellido, nacionalidad, fecha de nacimiento, es mayor de edad? (si es mayor de 18 años sólo responde SI, o NO), Lugar de nacimiento, fecha de expedición, y si la cédula está vigente',
+    TO_FILE('@myimages', 'cedula.jpg')
+);
+
+-- Clasificación de punto de referencia a partir de una imagen
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'claude-3-5-sonnet',
+    'Clasifique el punto de referencia identificado en esta imagen. Responda en JSON solo con el nombre del punto de referencia',
+    TO_FILE('@myimages', 'lugarb.jpg')
+);
+
+-- Análisis de imagen para reporte de accidente vehicular
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'claude-3-5-sonnet',
+    'Responde. 
+    1. Describe el incidente
+    2. ¿Cuántos vehículos están involucrados en el incidente?
+    3. ¿Dónde se produjo el impacto principal en el vehículo?
+    4. ¿El daño es severo o superficial?
+    5. ¿Qué parte del otro vehículo impactó al vehículo dañado?
+    6. ¿Hay partes desprendidas o elementos faltantes en el vehículo afectado?
+    7. ¿Las llantas están alineadas o presentan desplazamiento?
+    8. ¿Se observa daño en las luces, espejos o defensa del vehículo?
+    9. ¿Hay evidencia de fugas o manchas en el suelo?
+    10. ¿Qué colores tienen los vehículos involucrados?
+    11. ¿La imagen es clara y adecuada para radicar un siniestro?
+    12. ¿Cuál es el número de la placa del vehículo?
+    13. ¿Dame el nombre de la ciudad que aparece en la placa del vehículo? 
+    Ponlo en formato JSON, solo dos columnas, con el número de pregunta y respuesta',
+    TO_FILE('@myimages', 'choque3.png')
+);
