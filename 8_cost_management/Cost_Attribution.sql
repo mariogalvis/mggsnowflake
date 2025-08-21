@@ -103,3 +103,15 @@ SELECT
     SUM(credits_attributed_compute) AS total_attributed_credits
 FROM snowflake.account_usage.query_attribution_history
 WHERE (root_query_id = $query_id OR query_id = $query_id);
+
+-- ==========================================================
+-- Verificación de créditos Tokens
+-- ==========================================================
+
+SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.METERING_DAILY_HISTORY WHERE SERVICE_TYPE='AI_SERVICES' LIMIT 10;;
+
+SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_FUNCTIONS_USAGE_HISTORY LIMIT 10;
+
+SELECT *  FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_FUNCTIONS_QUERY_USAGE_HISTORY LIMIT 10;;
+
+SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_FUNCTIONS_QUERY_USAGE_HISTORY WHERE query_id='01bc55af-0105-3a1a-0008-d4d300028566';
