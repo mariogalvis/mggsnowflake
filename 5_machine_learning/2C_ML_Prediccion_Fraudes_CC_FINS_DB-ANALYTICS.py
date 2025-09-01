@@ -273,7 +273,9 @@ if st.button('Predecir transacciones fraudulentas'):
         deck = pdk.Deck(
             layers=[layer],
             initial_view_state=view_state,
-            map_style="mapbox://styles/mapbox/light-v9",
+            map_provider="carto",
+            map_style="light",
+            #map_style="mapbox://styles/mapbox/light-v9",
             tooltip=tooltip
         )
         
