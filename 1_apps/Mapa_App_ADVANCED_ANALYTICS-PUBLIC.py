@@ -71,7 +71,7 @@ def render_pydeck_chart(
     chart_dataframe["COLOR"] = chart_dataframe["COUNT"].apply(color_map.rgb_bytes_tuple)
     st.pydeck_chart(
         pdk.Deck(
-            map_provider="mapbox",
+            map_provider="carto",
             map_style="light",
             initial_view_state=pdk.ViewState(
                 latitude=37.633,
