@@ -40,6 +40,14 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE(
     TO_FILE('@myimages', 'cedula.jpg')
 );
 
+SELECT AI_EXTRACT(
+  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','358849121-Ejemplo-de-Facturas.pdf'),
+  responseFormat => [['name', 'Cuál es el nombre del cliente?'], 
+                     ['total', 'Cuál es el total de la factura?'],
+                     ['numero', 'Cuál es el número de la factura?'],
+                     ['fecha', 'Cuál es la fecha de la factura?']]
+);
+
 -- Análisis de imagen para reporte de accidente vehicular
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
     'claude-3-5-sonnet',
