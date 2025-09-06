@@ -48,6 +48,20 @@ SELECT AI_EXTRACT(
                      ['fecha', 'Cuál es la fecha de la factura?']]
 );
 
+SELECT 
+  relative_path,
+  AI_EXTRACT(
+    TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', relative_path),
+    [ 'Como se llama el propietario?',
+    'Cuál es la fecha de inicio de contrato? formato dd/mm/aaaa',
+    'Cuál es la duración de meses del contrato? formato número',
+    'Tiene cláusula de terminación anticipada? SI o NO',
+    'Cuál es el canon de arrendamiento? sólo en formato número, sin decimales']
+  ) AS extracted_info
+FROM DIRECTORY(@BD_EMPRESA.GOLD.MYIMAGES)
+WHERE relative_path LIKE 'contratos/%';
+
+
 -- Análisis de imagen para reporte de accidente vehicular
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
     'claude-3-5-sonnet',
