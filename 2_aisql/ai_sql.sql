@@ -5,11 +5,9 @@ USE SCHEMA PUBLIC;
 
 SET prompt = '### De la transcripción, genera un formato JSON con el resumen traducido a español menos de 200 palabras, nombre del producto, defecto, sentimiento del cliente sólo decir malo, neutral, positivo y la solución al cliente todo en español ###';
 
-SELECT snowflake.cortex.complete('llama3-70b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts 
-WHERE language = 'English' LIMIT 1;
+SELECT snowflake.cortex.complete('llama3-70b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts WHERE language = 'English' LIMIT 1;
 
-SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts 
-WHERE language = 'English' LIMIT 1;
+SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts  WHERE language = 'English' LIMIT 1;
 
 --AI Assistant - - ¿cuántas llamadas recibimos por tipo de daño?
 
@@ -80,6 +78,12 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE(
     TO_FILE('@myimages', 'choque3.png')
 );
 
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'claude-3-5-sonnet',
+    'Clasifique el punto de referencia identificado en esta imagen. Responda en JSON solo con el nombre del punto de referencia',
+    TO_FILE('@myimages', 'lugarb.jpg')
+);
+
 USE DATABASE BD_AI_CORTEX;
 USE SCHEMA PUBLIC;
 
@@ -94,4 +98,3 @@ SELECT
   AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución',
       'Tiempo de Espera']) AS call_sentiment
 FROM transcriptions;
-
