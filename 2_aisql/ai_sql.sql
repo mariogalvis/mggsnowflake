@@ -13,9 +13,6 @@ WHERE language = 'English' LIMIT 1;
 
 --AI Assistant - - ¿cuántas llamadas recibimos por tipo de daño?
 
-SELECT COUNT(*) AS total_calls 
-FROM BD_AI_CORTEX.PUBLIC.CALL_TRANSCRIPTS;
-
 -- Evaluación de sentimiento por categoría usando ENTITY_SENTIMENT
 SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(
   'Devuelve el sentimiento del cliente para la siguiente reseña: 
