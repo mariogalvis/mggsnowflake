@@ -44,10 +44,14 @@ def config_options():
 
     st.sidebar.selectbox('Seleccione el modelo:', (
     'llama3.1-405b',
-    'claude-4-sonnet',
-    'claude-4-opus',
+    'openai-gpt-5',
+    'openai-gpt-5-mini',
+    'openai-gpt-5-nano',
+    'openai-gpt-5-chat',
     'openai-gpt-4.1',
     'openai-o4-mini',
+    'claude-4-sonnet',
+    'claude-4-opus',
     'llama4-maverick',
     'llama4-scout',
     'claude-3-7-sonnet',
