@@ -11,6 +11,15 @@ SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, tr
 
 --AI Assistant - - ¿cuántas llamadas recibimos por tipo de daño?
 
+SELECT AI_COMPLETE(
+  model => 'llama3.3-70b',
+  prompt => 'El cliente Ana María Caicedo se quejó de que la aplicación móvil se bloqueó durante el proceso de pago.
+Intentó comprar 3 artículos: una chaqueta roja talla XL (USD 89,99), zapatillas azules para correr (USD 129,50) y un reloj de actividad física (USD 199,00). 
+La aplicación se bloqueó después de que ingresó su dirección de envío: Calle 140 # 16 - 94 int 4 
+Es miembro premium desde enero de 2024.',
+  response_format => TYPE OBJECT(note OBJECT(cuenta_items NUMBER, precio ARRAY(STRING), nombre STRING, direccion STRING, fecha_cliente STRING))
+);
+
 -- Evaluación de sentimiento por categoría usando ENTITY_SENTIMENT
 SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(
   'Devuelve el sentimiento del cliente para la siguiente reseña: 
