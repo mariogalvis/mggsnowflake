@@ -52,6 +52,16 @@ SELECT AI_EXTRACT(
                      ['fecha', 'Cuál es la fecha de la factura?']]
 );
 
+SELECT AI_EXTRACT(
+  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','SARLAF.pdf'),
+  responseFormat => [['name', 'Cuál es el nombre?'], 
+                     ['tipo', 'Es vinculación?'],
+                     ['id', 'Cuál es el número de identificación?'],
+                     ['telefono', 'Cuál es el teléfono?'],
+                     ['email', 'Cuál es el correo electrónico?'],
+                     ['ingresos_mensuales', 'Cuáles son los ingresos mensuales?']]
+);
+
 SELECT 
   relative_path,
   AI_EXTRACT(
