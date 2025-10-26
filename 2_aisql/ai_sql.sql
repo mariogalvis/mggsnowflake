@@ -1,5 +1,7 @@
 select snowflake.cortex.complete('openai-gpt-5','Que es ABC en Colombia?');
 
+show models in schema snowflake.models;
+
 USE DATABASE BD_AI_CORTEX;
 USE SCHEMA PUBLIC;
 
