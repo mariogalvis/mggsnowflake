@@ -30,7 +30,7 @@
 
 ---
 
-### [O’Reilly eBook: Snowflake The Definitive Guide](https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51RVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA)
+### [O’Reilly eBook: Snowflake The Definitive Guide](https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51PLUSSIGNRVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA___MVdIoSWhW8wQiTPZdSxkdzYnM5nWF0y___i8PLUSSIGNfN07xq)
 **Descripción:** El eBook de O’Reilly Snowflake: The Definitive Guide es una referencia clave para líderes técnicos y de negocio que quieren entender cómo maximizar valor con Snowflake.  
 
 ---
