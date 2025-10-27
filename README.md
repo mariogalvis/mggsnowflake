@@ -234,5 +234,3 @@
 
 ---
 
-**Fuente**: recopilado y resumido a partir del material del PDF original.  
-
