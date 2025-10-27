@@ -1,7 +1,7 @@
 <h1 align="center">❄️ Aprende Snowflake ❄️</h1>
 
 <p align="center">
-  <em>Recursos oficiales para aprender Snowflake — desde fundamentos hasta Inteligencia Artificial y Generative AI con Cortex.</em>
+  <em>Recursos para aprender Snowflake — desde fundamentos hasta Inteligencia Artificial y Generative AI con Cortex.</em>
 </p>
 
 <p align="center">
