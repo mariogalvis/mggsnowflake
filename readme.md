@@ -15,10 +15,12 @@
 
 ## 📘 1. FUNDAMENTOS Y DATA PLATFORM
 
-### [Zero to Snowflake (en Español)](https://quickstarts.snowflake.com/guide/zero_to_snowflake/index.html)
+### [Zero to Snowflake](https://quickstarts.snowflake.com/guide/zero_to_snowflake/index.html)
 **Temas:** Warehouses, Stages, JSON, Variant, Geospatial, Clon, Time Travel, Query Cache, Dynamic Tables  
 **Descripción:** Este workshop “Zero to Snowflake” guía a equipos de negocio y datos en cómo crear valor real desde el día uno con Snowflake, usando el caso práctico de Tasty Bytes.  
 **Tipo:** Webinar con ejercicios  
+## [Zero to Snowflake (en Español)]([https://quickstarts.snowflake.com/guide/zero_to_snowflake/index.html](https://www.snowflake.com/thankyou/zero-to-snowflake-mexico-tastybyte-2023-11-01/)) 
+# [Recursos y Scripts: Zero to Snowflake (En Español)] (https://github.com/mariogalvis/mggsnowflake/tree/main/files/other/lab_zero2snowflake-main)
 
 ---
 
