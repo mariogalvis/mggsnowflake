@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://assets.snowflake.com/wp-content/uploads/2023/09/AI-Data-Cloud-Logo-Blue.svg" width="220" alt="Snowflake Logo">
+</p>
+
 <h1 align="center">❄️ Aprende Snowflake ❄️</h1>
 
 <p align="center">
@@ -5,177 +9,179 @@
 </p>
 
 <p align="center">
-  <a href="https://quickstarts.snowflake.com/">Quickstarts</a> •
-  <a href="https://training.snowflake.com/">Capacitaciones</a> •
-  <a href="https://docs.snowflake.com/">Documentación</a> •
-  <a href="https://www.coursera.org/search?query=SNOWFLAKE&partners=Snowflake">Cursos Coursera</a>
+  <a href="https://quickstarts.snowflake.com/" target="_blank">Quickstarts</a> •
+  <a href="https://training.snowflake.com/" target="_blank">Capacitaciones</a> •
+  <a href="https://docs.snowflake.com/" target="_blank">Documentación</a> •
+  <a href="https://www.coursera.org/search?query=SNOWFLAKE&partners=Snowflake" target="_blank">Cursos Coursera</a>
 </p>
 
 ---
 
 ## 📘 1. FUNDAMENTOS Y DATA PLATFORM
 
-### [Zero to Snowflake](https://quickstarts.snowflake.com/guide/zero_to_snowflake/index.html)
+#### 1️⃣ <a href="https://quickstarts.snowflake.com/guide/zero_to_snowflake/index.html" target="_blank">Zero to Snowflake</a>
 **Temas:** Warehouses, Stages, JSON, Variant, Geospatial, Clon, Time Travel, Query Cache, Dynamic Tables  
 **Descripción:** Este workshop “Zero to Snowflake” guía a equipos de negocio y datos en cómo crear valor real desde el día uno con Snowflake, usando el caso práctico de Tasty Bytes.  
 **Tipo:** Webinar con ejercicios  
-##### [Zero to Snowflake (en Español)](https://www.snowflake.com/thankyou/zero-to-snowflake-mexico-tastybyte-2023-11-01/)
-###### [Recursos y Scripts: Zero to Snowflake (En Español)](https://github.com/mariogalvis/mggsnowflake/tree/main/files/other/lab_zero2snowflake-main)
+<small>
+<a href="https://www.snowflake.com/thankyou/zero-to-snowflake-mexico-tastybyte-2023-11-01/" target="_blank">📘 Zero to Snowflake (en Español)</a>  
+<a href="https://github.com/mariogalvis/mggsnowflake/tree/main/files/other/lab_zero2snowflake-main" target="_blank">📂 Recursos y Scripts</a>
+</small>
 
 ---
 
-### [Hands-On Essentials Track](https://learn.snowflake.com/en/pages/hands-on-essentials-track/)
-**Descripción:** La ruta Hands-On Essentials ofrece talleres prácticos para aprender Snowflake desde cero, aplicando casos reales de negocio con datos, SQL, IA y automatización.  
+#### 2️⃣ <a href="https://learn.snowflake.com/en/pages/hands-on-essentials-track/" target="_blank">Hands-On Essentials Track</a>
+**Descripción:** Ruta de talleres prácticos para aprender Snowflake desde cero, aplicando casos reales de negocio con datos, SQL, IA y automatización.  
 **Tipo:** Curso gratuito  
 
 ---
 
-### [O’Reilly eBook: Snowflake The Definitive Guide](https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51PLUSSIGNRVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA___MVdIoSWhW8wQiTPZdSxkdzYnM5nWF0y___i8PLUSSIGNfN07xq)
-**Descripción:** El eBook de O’Reilly Snowflake: The Definitive Guide es una referencia clave para líderes técnicos y de negocio que quieren entender cómo maximizar valor con Snowflake.  
+#### 3️⃣ <a href="https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51RVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA" target="_blank">O’Reilly eBook: Snowflake The Definitive Guide</a>
+**Descripción:** Referencia clave para líderes técnicos y de negocio que buscan entender cómo maximizar valor con Snowflake.  
 
 ---
 
-### [Hands-On Lab](https://github.com/mariogalvis/mggsnowflake/blob/main/Zero-to-Snow.sql)
-**Descripción:** Creación de recursos, carga de datos, tipo de dato Variant/JSON, políticas de enmascaramiento dinámico, clonado de datos, time-travel y query cache.  
+#### 4️⃣ <a href="https://github.com/mariogalvis/mggsnowflake/blob/main/Zero-to-Snow.sql" target="_blank">Hands-On Lab</a>
+**Descripción:** Creación de recursos, carga de datos, tipo de dato Variant/JSON, políticas de enmascaramiento dinámico, clonado, time-travel y query cache.  
 
 ---
 
-### [Intro to Snowflake for Devs, Data Scientists, Data Engineers](https://www.coursera.org/learn/snowflake-intro-app-developers-data-scientists-data-engineers)
+#### 5️⃣ <a href="https://www.coursera.org/learn/snowflake-intro-app-developers-data-scientists-data-engineers" target="_blank">Intro to Snowflake for Devs, Data Scientists, Data Engineers</a>
 **Descripción:** Curso gratuito ideal para desarrolladores, científicos de datos e ingenieros que quieren construir apps y modelos directamente en Snowflake.  
 
 ---
 
-### [Getting Started with Snowflake Task Graphs](https://quickstarts.snowflake.com/guide/getting-started-with-task-graphs/index.html)
+#### 6️⃣ <a href="https://quickstarts.snowflake.com/guide/getting-started-with-task-graphs/index.html" target="_blank">Getting Started with Snowflake Task Graphs</a>
 **Descripción:** Task Graphs permite orquestar flujos complejos de datos en Snowflake con tareas dependientes y paralelas, eliminando pipelines externos.  
 
 ---
 
 ## 📊 2. ANALYTICS Y CORTEX AI
 
-### [Customer Reviews Sentiment Analysis](https://quickstarts.snowflake.com/guide/geo-for-machine-learning/index.html)
-**Descripción:** Este laboratorio enseña cómo enriquecer modelos de machine learning con datos geoespaciales en Snowflake, desbloqueando análisis de ubicación clave para casos como logística, riesgo y expansión comercial.
+#### 7️⃣ <a href="https://quickstarts.snowflake.com/guide/geo-for-machine-learning/index.html" target="_blank">Customer Reviews Sentiment Analysis</a>
+**Descripción:** Enriquecer modelos de machine learning con datos geoespaciales en Snowflake.  
 
 ---
 
-### [Obteniendo Insights desde Imágenes – Cortex COMPLETE Multimodal](https://docs.snowflake.com/en/user-guide/snowflake-cortex/complete-multimodal)
-**Descripción:** Snowflake Cortex Complete es un motor multimodal que permite ejecutar modelos LLM sobre texto e imágenes directamente desde SQL.  
+#### 8️⃣ <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/complete-multimodal" target="_blank">Obteniendo Insights desde Imágenes – Cortex COMPLETE Multimodal</a>
+**Descripción:** Ejecuta modelos multimodales (texto e imagen) directamente desde SQL.  
 
 ---
 
-### [Getting Started with Cortex Analyst](https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/index.html)
-**Descripción:** Snowflake Cortex Analyst permite crear asistentes inteligentes que consultan datos con lenguaje natural, acelerando la toma de decisiones.  
+#### 9️⃣ <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/index.html" target="_blank">Getting Started with Cortex Analyst</a>
+**Descripción:** Crea asistentes inteligentes que consultan datos con lenguaje natural, acelerando decisiones empresariales.  
 
 ---
 
-### [Snowflake Intelligence — A New Era of Conversational AI](https://medium.com/@nickakincilar/executive-briefing-snowflake-intelligence-a-new-era-of-conversational-ai-for-the-enterprise-8af4ab5c6d43)
-**Descripción:** Snowflake Intelligence no solo responde el qué, también explica el porqué. Conecta datos estructurados y no estructurados, interpreta métricas, políticas y orquesta agentes para ofrecer contexto y causa.  
+#### 🔟 <a href="https://medium.com/@nickakincilar/executive-briefing-snowflake-intelligence-a-new-era-of-conversational-ai-for-the-enterprise-8af4ab5c6d43" target="_blank">Snowflake Intelligence — A New Era of Conversational AI</a>
+**Descripción:** Snowflake Intelligence conecta datos estructurados y no estructurados, interpreta métricas, políticas y orquesta agentes inteligentes para ofrecer contexto y causa.  
 
 ---
 
-### [Build a RAG-based LLM Assistant using Streamlit and Cortex Search](https://quickstarts.snowflake.com/guide/ask_questions_to_your_own_documents_with_snowflake_cortex_search/)
-**Descripción:** Convierte tus documentos en conocimiento accionable con Cortex Search, permitiendo hacer preguntas en lenguaje natural sobre tus propios archivos.  
+#### 11️⃣ <a href="https://quickstarts.snowflake.com/guide/ask_questions_to_your_own_documents_with_snowflake_cortex_search/" target="_blank">Build a RAG-based LLM Assistant using Streamlit and Cortex Search</a>
+**Descripción:** Convierte tus documentos en conocimiento accionable con Cortex Search, permitiendo consultas en lenguaje natural sobre tus archivos.  
 
 ---
 
-### [Getting Started with Cortex Agents](https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/)
+#### 12️⃣ <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/" target="_blank">Getting Started with Cortex Agents</a>
 **Descripción:** Transforma conjuntos de datos en asistentes inteligentes personalizados, capaces de automatizar tareas y responder en lenguaje natural.  
 
 ---
 
 ## 🤖 3. AI Y GENERATIVE AI
 
-### [DeepSeek-R1 Chatbot](https://github.com/Snowflake-Labs/snowflake-demo-streamlit/tree/main/DeepSeek-R1%20chatbot)
-**Descripción:** Integra DeepSeek R1 con Snowflake y Streamlit para crear un asistente conversacional privado y contextualizado con datos empresariales.  
+#### 13️⃣ <a href="https://github.com/Snowflake-Labs/snowflake-demo-streamlit/tree/main/DeepSeek-R1%20chatbot" target="_blank">DeepSeek-R1 Chatbot</a>
+**Descripción:** Integra DeepSeek R1 con Snowflake y Streamlit para crear un asistente conversacional privado con datos empresariales.  
 
 ---
 
-### [SQL AI – Run 3 Useful LLM Inference Jobs in Minutes](https://medium.com/snowflake/run-3-useful-llm-inference-jobs-in-minutes-with-snowflake-cortex)
-**Descripción:** Snowflake Cortex habilita SQL AI, permitiendo ejecutar tareas de IA generativa como resumen, clasificación y extracción directamente desde SQL.  
+#### 14️⃣ <a href="https://medium.com/snowflake/run-3-useful-llm-inference-jobs-in-minutes-with-snowflake-cortex" target="_blank">SQL AI – Run 3 Useful LLM Inference Jobs in Minutes</a>
+**Descripción:** Ejecuta tareas de IA generativa (resumen, clasificación y extracción) directamente desde SQL con Snowflake Cortex.  
 
 ---
 
-### [Document AI – Extracting Insights from Unstructured Data](https://quickstarts.snowflake.com/guide/tasty_bytes_extracting_insights_with_docai/)
-**Descripción:** DocAI de Snowflake permite extraer insights de documentos no estructurados como facturas o recibos directamente con SQL.  
+#### 15️⃣ <a href="https://quickstarts.snowflake.com/guide/tasty_bytes_extracting_insights_with_docai/" target="_blank">Document AI – Extracting Insights from Unstructured Data</a>
+**Descripción:** Extrae insights de documentos no estructurados como facturas o recibos directamente con SQL.  
 
 ---
 
-### [Document AI – Automating Workflows](https://quickstarts.snowflake.com/guide/automating_document_processing_workflows_with_document_ai/)
-**Descripción:** Automatiza flujos de trabajo con documentos escaneados, extrayendo y estructurando datos desde PDF o imágenes.  
+#### 16️⃣ <a href="https://quickstarts.snowflake.com/guide/automating_document_processing_workflows_with_document_ai/" target="_blank">Document AI – Automating Workflows</a>
+**Descripción:** Automatiza flujos con documentos escaneados, extrayendo y estructurando datos desde PDF o imágenes.  
 
 ---
 
-### [AI Observability in Snowflake](https://quickstarts.snowflake.com/guide/getting_started_with_ai_observability/)
-**Descripción:** Evalúa la calidad y confiabilidad de aplicaciones GenAI directamente en Snowflake con Cortex AI y TruLens.  
+#### 17️⃣ <a href="https://quickstarts.snowflake.com/guide/getting_started_with_ai_observability/" target="_blank">AI Observability in Snowflake</a>
+**Descripción:** Evalúa la calidad y confiabilidad de aplicaciones GenAI directamente con Cortex AI y TruLens.  
 
 ---
 
-### [AI_EXTRACT](https://docs.snowflake.com/en/sql-reference/functions/ai_extract)
-**Descripción:** AI_Extract permite extraer información específica de documentos no estructurados y texto usando inteligencia artificial directamente desde SQL.  
+#### 18️⃣ <a href="https://docs.snowflake.com/en/sql-reference/functions/ai_extract" target="_blank">AI_EXTRACT</a>
+**Descripción:** Extrae información específica de documentos y texto usando IA desde SQL.  
 
 ---
 
-### [Conecta tus Apps Externas con la Inteligencia de Snowflake Cortex](https://app.snowflake.com/templates?template=cortex_rest_api)
-**Descripción:** La Cortex REST API permite integrar aplicaciones con modelos de IA (OpenAI, Anthropic, Meta, etc.) directamente sobre Snowflake.  
+#### 19️⃣ <a href="https://app.snowflake.com/templates?template=cortex_rest_api" target="_blank">Conecta tus Apps Externas con la Inteligencia de Snowflake Cortex</a>
+**Descripción:** Integra aplicaciones externas (OpenAI, Anthropic, Meta, etc.) con modelos de IA en Snowflake.  
 
 ---
 
-### [Snowflake Intelligence + Cortex Knowledge Extensions](https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-intelligence-and-cke/)
-**Descripción:** Snowflake Intelligence permite interactuar con datos en lenguaje natural y las CKE amplían esa inteligencia conectando información interna y externa.  
+#### 20️⃣ <a href="https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-intelligence-and-cke/" target="_blank">Snowflake Intelligence + Cortex Knowledge Extensions</a>
+**Descripción:** Conecta información estructurada y no estructurada bajo una misma inteligencia empresarial.  
 
 ---
 
-### [Snowflake MCP Server](https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-mcp-server/)
-**Descripción:** Permite que los agentes de IA accedan a datos empresariales de forma segura y gobernada, sin infraestructura adicional.  
+#### 21️⃣ <a href="https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-mcp-server/" target="_blank">Snowflake MCP Server</a>
+**Descripción:** Permite que los agentes de IA accedan a datos empresariales de forma segura y gobernada.  
 
 ---
 
 ## 💰 4. COST MANAGEMENT
 
-### [Granular Cost Attribution and Chargeback](https://medium.com/snowflake/granular-cost-attribution-and-chargeback-for-warehouse-costs-on-snowflake)
-**Descripción:** Asigna costos de warehouse a nivel de usuario, equipo o proyecto, habilitando visibilidad granular y modelos de chargeback automatizados.  
+#### 22️⃣ <a href="https://medium.com/snowflake/granular-cost-attribution-and-chargeback-for-warehouse-costs-on-snowflake" target="_blank">Granular Cost Attribution and Chargeback</a>
+**Descripción:** Asigna costos de warehouse por usuario o proyecto, habilitando visibilidad granular y modelos de chargeback.  
 
 ---
 
-### [Dimensionamiento adecuado en Snowflake](https://medium.com/@anderson.santos_5614/right-sizing-no-snowflake-como-otimizar-seus-warehouses-e-cr%C3%A9ditos-d071aef9ad88)
-**Descripción:** La estrategia de right-sizing optimiza el tamaño y uso de los warehouses para reducir costos sin sacrificar rendimiento.  
+#### 23️⃣ <a href="https://medium.com/@anderson.santos_5614/right-sizing-no-snowflake-como-otimizar-seus-warehouses-e-cr%C3%A9ditos-d071aef9ad88" target="_blank">Dimensionamiento adecuado en Snowflake</a>
+**Descripción:** Optimiza el tamaño y uso de warehouses para reducir costos sin sacrificar rendimiento.  
 
 ---
 
-### [Update Warehouse Utilization with Streamlit](https://github.com/Snowflake-Labs/snowflake-demo-notebooks/blob/main/Warehouse_Utilization_with_Streamlit/Warehouse_Utilization_with_Streamlit.ipynb)
+#### 24️⃣ <a href="https://github.com/Snowflake-Labs/snowflake-demo-notebooks/blob/main/Warehouse_Utilization_with_Streamlit/Warehouse_Utilization_with_Streamlit.ipynb" target="_blank">Update Warehouse Utilization with Streamlit</a>
 **Descripción:** Visualiza en tiempo real el uso de warehouses, identificando cuellos de botella y optimizando costos.  
 
 ---
 
-### [How to Analyze Query Performance in Snowflake](https://medium.com/snowflake/how-to-analyze-query-performance-in-snowflake-3f5c24cf65bd)
-**Descripción:** Permite analizar el rendimiento de consultas en segundos, identificando ineficiencias y optimizando la experiencia.  
+#### 25️⃣ <a href="https://medium.com/snowflake/how-to-analyze-query-performance-in-snowflake-3f5c24cf65bd" target="_blank">How to Analyze Query Performance in Snowflake</a>
+**Descripción:** Analiza rendimiento de consultas en segundos, identificando ineficiencias y optimizando la experiencia.  
 
 ---
 
 ## 🔒 5. SEGURIDAD Y GOBERNANZA
 
-### [Automatically Classify and Tag Sensitive Data](https://docs.snowflake.com/en/user-guide/tutorials/sensitive-data-auto-classification)
-**Descripción:** Snowflake usa inteligencia artificial para identificar automáticamente datos sensibles como PII o PCI, reduciendo riesgos y acelerando la gobernanza.  
+#### 26️⃣ <a href="https://docs.snowflake.com/en/user-guide/tutorials/sensitive-data-auto-classification" target="_blank">Automatically Classify and Tag Sensitive Data</a>
+**Descripción:** Snowflake usa IA para identificar automáticamente datos sensibles (PII o PCI), reduciendo riesgos y acelerando la gobernanza.  
 
 ---
 
 ## 🎓 6. EDUCACIÓN Y RECURSOS COMPLEMENTARIOS
 
-- [Snowflake Quickstarts](https://quickstarts.snowflake.com/)  
-- [Snowflake Training](https://training.snowflake.com/)  
-- [Snowflake Resource Library](https://www.snowflake.com/en/resources/)  
-- [Coursera – Snowflake](https://www.coursera.org/search?query=SNOWFLAKE&partners=Snowflake&sortBy=BEST_MATCH)  
-- [Snowflake Dummies Guide Series](https://www.snowflake.com/resource/snowflake-dummies-guides/)  
-- [Snowflake Cheat Sheet](https://snow-flake-cheat-sheet.streamlit.app/)  
+- <a href="https://quickstarts.snowflake.com/" target="_blank">Snowflake Quickstarts</a>  
+- <a href="https://training.snowflake.com/" target="_blank">Snowflake Training</a>  
+- <a href="https://www.snowflake.com/en/resources/" target="_blank">Snowflake Resource Library</a>  
+- <a href="https://www.coursera.org/search?query=SNOWFLAKE&partners=Snowflake&sortBy=BEST_MATCH" target="_blank">Coursera – Snowflake</a>  
+- <a href="https://www.snowflake.com/resource/snowflake-dummies-guides/" target="_blank">Snowflake Dummies Guide Series</a>  
+- <a href="https://snow-flake-cheat-sheet.streamlit.app/" target="_blank">Snowflake Cheat Sheet</a>  
 
 ---
 
 ## 🚀 Cómo Empezar
 
-1. Crea tu cuenta gratuita en [trial.snowflake.com](http://trial.snowflake.com)  
+1. Crea tu cuenta gratuita en <a href="http://trial.snowflake.com" target="_blank">trial.snowflake.com</a>  
    *(Selecciona Enterprise Edition – AWS – US West Oregon)*  
-2. Realiza el Workshop **Zero to Snowflake**.  
-3. Completa la ruta **Hands-On Essentials Track**.  
-4. Explora los ejercicios de **IA, ML y Data Engineering**.  
+2. Realiza el Workshop **Zero to Snowflake**  
+3. Completa la ruta **Hands-On Essentials Track**  
+4. Explora los ejercicios de **IA, ML y Data Engineering**  
 
 ---
 
