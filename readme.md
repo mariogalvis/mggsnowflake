@@ -32,7 +32,7 @@
 
 ---
 
-#### 3. <a href="[https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51RVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA](https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51PLUSSIGNRVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA___MVdIoSWhW8wQiTPZdSxkdzYnM5nWF0y___i8PLUSSIGNfN07xq)" target="_blank" rel="noopener noreferrer">O’Reilly eBook: Snowflake The Definitive Guide</a>
+#### 3. <a href="https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51RVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA](https://eng11e.seismic.com/i/7jv0dRiCdYbGPqxI51PLUSSIGNRVceNItWKCabdcj2lPSOvS1nBt0U4nH4bYAEg7z8kkLsjo37mA3F9K8wOjxFvGnGZrA___MVdIoSWhW8wQiTPZdSxkdzYnM5nWF0y___i8PLUSSIGNfN07xq)" target="_blank" rel="noopener noreferrer">O’Reilly eBook: Snowflake The Definitive Guide</a>
 **Descripción:** Referencia clave para líderes técnicos y de negocio que buscan entender cómo maximizar valor con Snowflake.  
 
 ---
