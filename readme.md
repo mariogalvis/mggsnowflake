@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://assets.snowflake.com/wp-content/uploads/2023/09/AI-Data-Cloud-Logo-Blue.svg" width="220" alt="Snowflake Logo">
-</p>
-
 <h1 align="center">❄️ Aprende Snowflake ❄️</h1>
 
 <p align="center">
