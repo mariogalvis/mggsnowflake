@@ -1,6 +1,6 @@
 # ❄️ Aprende Snowflake — README
 
-> Recursos oficiales para aprender Snowflake: desde fundamentos hasta Inteligencia Artificial y GenAI con Cortex.  
+> Recursos para aprender Snowflake: desde fundamentos hasta Inteligencia Artificial y GenAI con Cortex.  
 
 ## Fundamentos y Hands‑On
 
