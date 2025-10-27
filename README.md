@@ -1,30 +1,6 @@
 # ❄️ Aprende Snowflake — README
 
 > Recursos oficiales para aprender Snowflake: desde fundamentos hasta Inteligencia Artificial y GenAI con Cortex.  
-> **Todos los enlaces se abren en una pestaña nueva** (usamos `<a target="_blank" rel="noopener noreferrer">`).
-
----
-
-## Cómo abrir enlaces en una pestaña nueva en GitHub
-En GitHub Markdown puedes usar HTML directamente:
-```html
-<a href="https://ejemplo.com" target="_blank" rel="noopener noreferrer">Abrir</a>
-```
-
----
-
-## Índice rápido
-1. [Fundamentos y Hands‑On](#fundamentos-y-hands-on)
-2. [AI & GenAI (Cortex, Analyst, Agents, DocAI, REST API)](#ai--genai-cortex-analyst-agents-docai-rest-api)
-3. [Machine Learning (Snowpark, Forecasting, Fraud, Churn, Observability)](#machine-learning-snowpark-forecasting-fraud-churn-observability)
-4. [Data Engineering (Dynamic Tables, Task Graphs, Pandas, PyPI)](#data-engineering-dynamic-tables-task-graphs-pandas-pypi)
-5. [Gestión de Costos (chargeback, right-sizing, performance)](#gestión-de-costos-chargeback-right-sizing-performance)
-6. [Seguridad y Gobernanza](#seguridad-y-gobernanza)
-7. [Notebooks, Dashboards y Demos extra](#notebooks-dashboards-y-demos-extra)
-8. [Educación y Certificaciones](#educación-y-certificaciones)
-9. [Recursos Generales](#recursos-generales)
-
----
 
 ## Fundamentos y Hands‑On
 
@@ -175,7 +151,7 @@ En GitHub Markdown puedes usar HTML directamente:
 
 33. **ML Observability en Snowflake**  
     Monitorea modelos en producción (drift, errores, performance) sin mover datos.  
-    <a href="https://quickstarts.snowflake.com/guide/getting_started_with_ml_observability_in_snowflake/index.html#0" target="_blank" rel="noopener noreferrer">→ Quickstart</a> · 
+    <a href="https://quickstarts.snowflake.com/guide/getting-started-with-ml-observability-in-snowflake/index.html#0" target="_blank" rel="noopener noreferrer">→ Quickstart</a> · 
     <a href="https://www.youtube.com/watch?v=VS7_yvt498Y" target="_blank" rel="noopener noreferrer">→ Video</a>
 
 ---
