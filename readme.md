@@ -64,23 +64,23 @@
 
 ---
 
-#### 9. <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/index.html" target="_blank" rel="noopener noreferrer">Getting Started with Cortex Analyst</a>
-**Descripción:** Crea asistentes inteligentes que consultan datos con lenguaje natural, acelerando decisiones empresariales.  
-
----
-
-#### 10. <a href="https://medium.com/@nickakincilar/executive-briefing-snowflake-intelligence-a-new-era-of-conversational-ai-for-the-enterprise-8af4ab5c6d43" target="_blank" rel="noopener noreferrer">Snowflake Intelligence — A New Era of Conversational AI</a>
-**Descripción:** Snowflake Intelligence conecta datos estructurados y no estructurados, interpreta métricas, políticas y orquesta agentes inteligentes para ofrecer contexto y causa.  
-
----
-
-#### 11. <a href="https://quickstarts.snowflake.com/guide/ask_questions_to_your_own_documents_with_snowflake_cortex_search/" target="_blank" rel="noopener noreferrer">Build a RAG-based LLM Assistant using Streamlit and Cortex Search</a>
+#### 9. <a href="https://quickstarts.snowflake.com/guide/ask_questions_to_your_own_documents_with_snowflake_cortex_search/" target="_blank" rel="noopener noreferrer">Build a RAG-based LLM Assistant using Streamlit and Cortex Search</a>
 **Descripción:** Convierte tus documentos en conocimiento accionable con Cortex Search, permitiendo consultas en lenguaje natural sobre tus archivos.  
 
 ---
 
-#### 12. <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/" target="_blank" rel="noopener noreferrer">Getting Started with Cortex Agents</a>
+#### 10. <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/index.html" target="_blank" rel="noopener noreferrer">Getting Started with Cortex Analyst</a>
+**Descripción:** Crea asistentes inteligentes que consultan datos con lenguaje natural, acelerando decisiones empresariales.  
+
+---
+
+#### 11. <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/" target="_blank" rel="noopener noreferrer">Getting Started with Cortex Agents</a>
 **Descripción:** Transforma conjuntos de datos en asistentes inteligentes personalizados, capaces de automatizar tareas y responder en lenguaje natural.  
+
+---
+
+#### 12. <a href="https://medium.com/@nickakincilar/executive-briefing-snowflake-intelligence-a-new-era-of-conversational-ai-for-the-enterprise-8af4ab5c6d43" target="_blank" rel="noopener noreferrer">Snowflake Intelligence — A New Era of Conversational AI</a>
+**Descripción:** Snowflake Intelligence conecta datos estructurados y no estructurados, interpreta métricas, políticas y orquesta agentes inteligentes para ofrecer contexto y causa.  
 
 ---
 
