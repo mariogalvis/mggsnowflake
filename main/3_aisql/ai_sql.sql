@@ -1,7 +1,5 @@
 select snowflake.cortex.complete('openai-gpt-5','Que es ABC en Colombia?');
 
-show models in schema snowflake.models;
-
 USE DATABASE BD_AI_CORTEX;
 USE SCHEMA PUBLIC;
 
@@ -11,17 +9,12 @@ SELECT snowflake.cortex.complete('llama3-70b', CONCAT('[INST]', $prompt, transcr
 
 SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts  WHERE language = 'English' LIMIT 1;
 
+
+
+
+
 --AI Assistant - - ¿cuántas llamadas recibimos por tipo de daño?
-
-SELECT AI_COMPLETE(
-  model => 'llama3.3-70b',
-  prompt => 'El cliente Ana María Caicedo se quejó de que la aplicación móvil se bloqueó durante el proceso de pago.
-Intentó comprar 3 artículos: una chaqueta roja talla XL (USD 89,99), zapatillas azules para correr (USD 129,50) y un reloj de actividad física (USD 199,00). 
-La aplicación se bloqueó después de que ingresó su dirección de envío: Calle 140 # 16 - 94 int 4 
-Es miembro premium desde enero de 2024.',
-  response_format => TYPE OBJECT(note OBJECT(cuenta_items NUMBER, precio ARRAY(STRING), nombre STRING, direccion STRING, fecha_cliente STRING))
-);
-
+    
 -- Evaluación de sentimiento por categoría usando ENTITY_SENTIMENT
 SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(
   'Devuelve el sentimiento del cliente para la siguiente reseña: 
@@ -62,6 +55,28 @@ SELECT AI_EXTRACT(
                      ['telefono', 'Cuál es el teléfono?'],
                      ['email', 'Cuál es el correo electrónico?'],
                      ['ingresos_mensuales', 'Cuáles son los ingresos mensuales?']]
+);
+
+--INSERT INTO FORMULARIOS_SARLAF (NOMBRE, TIPO_VINCULACION, IDENTIFICACION, TELEFONO, EMAIL, INGRESOS_MENSUALES)
+SELECT
+    RESULT:response:name::string                AS NOMBRE,
+    RESULT:response:tipo::string                AS TIPO_VINCULACION,
+    RESULT:response:id::string                  AS IDENTIFICACION,
+    RESULT:response:telefono::string            AS TELEFONO,
+    RESULT:response:email::string               AS EMAIL,
+    RESULT:response:ingresos_mensuales::string  AS INGRESOS_MENSUALES
+FROM (
+    SELECT AI_EXTRACT(
+        file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', 'SARLAF.pdf'),
+        responseFormat => [
+            ['name', 'Cuál es el nombre?'], 
+            ['tipo', 'Es vinculación?'],
+            ['id', 'Cuál es el número de identificación?'],
+            ['telefono', 'Cuál es el teléfono?'],
+            ['email', 'Cuál es el correo electrónico?'],
+            ['ingresos_mensuales', 'Cuáles son los ingresos mensuales?']
+        ]
+    ) AS RESULT
 );
 
 SELECT 
@@ -119,3 +134,39 @@ SELECT
   AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución',
       'Tiempo de Espera']) AS call_sentiment
 FROM transcriptions;
+
+-- Structure Outputs 
+SELECT AI_COMPLETE(
+    model => 'mistral-large2',
+    prompt => 'Devuelve el sentimiento del cliente para la siguiente transcripción de llamada: 
+    Llamé porque mi factura llegó con un cobro adicional que no reconozco. 
+    La agente fue muy amable y me explicó todo con paciencia, aunque tuve que esperar casi 10 minutos en línea. 
+    Al final me resolvieron el problema, pero siento que el proceso fue demasiado lento.',
+    response_format => {
+        'type': 'json',
+        'schema': {
+            'type': 'object',
+            'properties': {
+                'sentiment_categories': {
+                    'type': 'object',
+                    'properties': {
+                        'atencion_agente':        {'type': 'string'},
+                        'tiempo_espera':          {'type': 'string'},
+                        'resolucion_problema':    {'type': 'string'},
+                        'satisfaccion_general':   {'type': 'string'}
+                    },
+                    'required': ['atencion_agente','tiempo_espera','resolucion_problema','satisfaccion_general']
+}}}});
+
+-- Opcional Creación de Tabla Sarlaf
+CREATE OR REPLACE TABLE FORMULARIOS_SARLAF (
+    NOMBRE STRING,
+    TIPO_VINCULACION STRING,
+    IDENTIFICACION STRING,
+    TELEFONO STRING,
+    EMAIL STRING,
+    INGRESOS_MENSUALES STRING,
+    FECHA_EXTRACCION TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+SELECT * FROM FORMULARIOS_SARLAF;
