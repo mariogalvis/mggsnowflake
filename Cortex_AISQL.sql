@@ -143,13 +143,7 @@ SELECT AI_COMPLETE(
     La agente fue muy amable y me explicó todo con paciencia, aunque tuve que esperar casi 10 minutos en línea. 
     Al final me resolvieron el problema, pero siento que el proceso fue demasiado lento.',
     response_format => {
-        'type': 'json',
-        'schema': {
-            'type': 'object',
-            'properties': {
-                'sentiment_categories': {
-                    'type': 'object',
-                    'properties': {
+        'type': 'json', 'schema': { 'type': 'object', 'properties': {'sentiment_categories': {'type': 'object','properties': {
                         'atencion_agente':        {'type': 'string'},
                         'tiempo_espera':          {'type': 'string'},
                         'resolucion_problema':    {'type': 'string'},
