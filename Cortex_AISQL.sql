@@ -48,7 +48,7 @@ SELECT AI_EXTRACT(
 );
 
 SELECT AI_EXTRACT(
-  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','SARLAF.pdf'),
+  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','SARLAFT.pdf'),
   responseFormat => [['name', 'Cuál es el nombre?'], 
                      ['tipo', 'Es vinculación?'],
                      ['id', 'Cuál es el número de identificación?'],
@@ -57,7 +57,7 @@ SELECT AI_EXTRACT(
                      ['ingresos_mensuales', 'Cuáles son los ingresos mensuales?']]
 );
 
---INSERT INTO FORMULARIOS_SARLAF (NOMBRE, TIPO_VINCULACION, IDENTIFICACION, TELEFONO, EMAIL, INGRESOS_MENSUALES)
+--INSERT INTO FORMULARIOS_SARLAFT (NOMBRE, TIPO_VINCULACION, IDENTIFICACION, TELEFONO, EMAIL, INGRESOS_MENSUALES)
 SELECT
     RESULT:response:name::string                AS NOMBRE,
     RESULT:response:tipo::string                AS TIPO_VINCULACION,
@@ -67,7 +67,7 @@ SELECT
     RESULT:response:ingresos_mensuales::string  AS INGRESOS_MENSUALES
 FROM (
     SELECT AI_EXTRACT(
-        file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', 'SARLAF.pdf'),
+        file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', 'SARLAFT.pdf'),
         responseFormat => [
             ['name', 'Cuál es el nombre?'], 
             ['tipo', 'Es vinculación?'],
@@ -152,8 +152,8 @@ SELECT AI_COMPLETE(
                     'required': ['atencion_agente','tiempo_espera','resolucion_problema','satisfaccion_general']
 }}}});
 
--- Opcional Creación de Tabla Sarlaf
-CREATE OR REPLACE TABLE FORMULARIOS_SARLAF (
+-- Opcional Creación de Tabla Sarlaft
+CREATE OR REPLACE TABLE FORMULARIOS_SARLAFT (
     NOMBRE STRING,
     TIPO_VINCULACION STRING,
     IDENTIFICACION STRING,
