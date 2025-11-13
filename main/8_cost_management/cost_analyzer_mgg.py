@@ -283,6 +283,54 @@ def get_account_info() -> Dict:
     except:
         return {}
 
+@st.cache_data(ttl=3600)
+def get_account_created_date() -> Optional[datetime]:
+    """Obtiene la fecha de activación/creación de la cuenta
+    Retorna: datetime o None si no se puede obtener"""
+    # Intentar primero desde ORGANIZATION_USAGE.ACCOUNTS (sin mostrar warnings)
+    try:
+        query = """
+        SELECT MIN(ACCOUNT_CREATED_ON) as ACCOUNT_CREATED_ON
+        FROM SNOWFLAKE.ORGANIZATION_USAGE.ACCOUNTS
+        WHERE ACCOUNT_CREATED_ON IS NOT NULL
+        """
+        try:
+            result = session.sql(query).to_pandas()
+            if not result.empty and pd.notna(result['ACCOUNT_CREATED_ON'].iloc[0]):
+                created_date = pd.to_datetime(result['ACCOUNT_CREATED_ON'].iloc[0])
+                if isinstance(created_date, pd.Timestamp):
+                    return created_date.to_pydatetime()
+                return created_date
+        except:
+            # Silenciosamente fallar si no hay acceso a ORGANIZATION_USAGE
+            pass
+    except:
+        pass
+    
+    # Fallback: usar la fecha más antigua de METERING_HISTORY
+    try:
+        if check_view_exists("METERING_HISTORY"):
+            date_col = detect_date_column("METERING_HISTORY")
+            if date_col:
+                query = f"""
+                SELECT MIN({date_col}) as MIN_DATE
+                FROM SNOWFLAKE.ACCOUNT_USAGE.METERING_HISTORY
+                WHERE {date_col} IS NOT NULL
+                """
+                try:
+                    result = session.sql(query).to_pandas()
+                    if not result.empty and pd.notna(result['MIN_DATE'].iloc[0]):
+                        created_date = pd.to_datetime(result['MIN_DATE'].iloc[0])
+                        if isinstance(created_date, pd.Timestamp):
+                            return created_date.to_pydatetime()
+                        return created_date
+                except:
+                    pass
+    except:
+        pass
+    
+    return None
+
 # ============================================================================
 # FUNCIONES DE CONSULTA
 # ============================================================================
@@ -362,6 +410,28 @@ def get_overview_metrics(start_date, end_date, warehouses=None, roles=None, user
         metrics['service_breakdown'] = pd.DataFrame()
     
     return metrics, queries
+
+@st.cache_data(ttl=300)
+def get_total_credits_consumed_from_start() -> Tuple[float, str]:
+    """Obtiene el total de créditos consumidos desde el inicio de la cuenta
+    Retorna: (total_credits, query_sql)"""
+    if not check_view_exists("METERING_HISTORY"):
+        return 0.0, ""
+    
+    date_col = detect_date_column("METERING_HISTORY")
+    credits_col = detect_credits_column("METERING_HISTORY")
+    if not date_col or not credits_col:
+        return 0.0, ""
+    
+    # Obtener desde el inicio (sin filtro de fecha)
+    query = f"""
+    SELECT SUM({credits_col}) as TOTAL
+    FROM SNOWFLAKE.ACCOUNT_USAGE.METERING_HISTORY
+    WHERE {date_col} IS NOT NULL
+    """
+    result, query_str = safe_query(query, "Total créditos desde inicio")
+    total = result['TOTAL'].sum() if not result.empty and not result['TOTAL'].isna().all() else 0.0
+    return float(total), query_str
 
 @st.cache_data(ttl=300)
 def get_daily_trends(start_date, end_date) -> Tuple[pd.DataFrame, str]:
@@ -867,7 +937,7 @@ def create_pie_chart(df, label_col, value_col, cost_col=None, title="Distribuci�
             # Formatear valores según el tipo (créditos, GB, TB, etc.)
             if 'CREDITS' in value_col.upper() or 'CREDIT' in value_col.upper():
                 value_label = "Créditos"
-                value_format = lambda v: f"{v:.4f}"
+                value_format = lambda v: f"{v:.2f}"
             elif 'TB' in value_col.upper():
                 value_label = "TB"
                 value_format = lambda v: f"{v:.2f}"
@@ -888,7 +958,7 @@ def create_pie_chart(df, label_col, value_col, cost_col=None, title="Distribuci�
         else:
             hover_text = [
                 f"<b>{row[label_col]}</b><br>" +
-                f"Valor: {row[value_col]:.4f}<br>" +
+                f"Valor: {row[value_col]:.2f}<br>" +
                 f"Porcentaje: {row['PERCENTAGE']:.2f}%"
                 for _, row in chart_df.iterrows()
             ]
@@ -963,31 +1033,153 @@ def display_sql_queries(queries, title="🔍 Query SQL Ejecutado"):
 # UI PRINCIPAL
 # ============================================================================
 
-# Estilos CSS personalizados para mejor diseño visual
+# Estilos CSS optimizados para máxima densidad visual y aprovechamiento del espacio
 st.markdown("""
     <style>
+    /* Reducir padding del contenedor principal - acercar contenido al top */
     .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        max-width: 95% !important;
     }
+    
+    /* Reducir gap entre sidebar y contenido principal */
+    [data-testid="stSidebar"] {
+        padding: 0.5rem !important;
+    }
+    [data-testid="stSidebar"] > div {
+        padding: 0.3rem !important;
+    }
+    
+    /* Métricas más compactas */
     .stMetric {
         background-color: #f0f2f6;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
+        padding: 0.25rem 0.35rem !important;
+        border-radius: 0.3rem;
+        margin-bottom: 0.2rem !important;
     }
-    h1, h2, h3 {
-        margin-top: 1.5rem !important;
-        margin-bottom: 1rem !important;
+    .stMetric > label {
+        font-size: 0.7rem !important;
+        padding-bottom: 0.05rem !important;
+        margin-bottom: 0.05rem !important;
+    }
+    .stMetric > div {
+        font-size: 1.3rem !important;
+        padding-top: 0.05rem !important;
+    }
+    
+    /* Títulos más pequeños y compactos - Contenido Principal */
+    h1 {
+        font-size: 1.5rem !important;
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.3 !important;
+    }
+    h2 {
+        font-size: 1.2rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.3rem !important;
+        line-height: 1.3 !important;
+    }
+    h3 {
+        font-size: 1.0rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.3rem !important;
+        line-height: 1.3 !important;
+    }
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    /* Sidebar - títulos más compactos */
+    [data-testid="stSidebar"] h1 {
+        font-size: 1.2rem !important;
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    [data-testid="stSidebar"] h2 {
+        font-size: 1.0rem !important;
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    [data-testid="stSidebar"] h3 {
+        font-size: 0.9rem !important;
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+    
+    /* Separadores más compactos */
+    hr {
+        margin: 0.5rem 0 !important;
+    }
+    
+    /* Elementos más compactos */
+    .element-container {
+        margin-bottom: 0.2rem !important;
+    }
+    [data-testid="stHorizontalBlock"] {
+        gap: 0.4rem !important;
+    }
+    
+    /* Tablas y gráficos más compactos */
+    .stDataFrame {
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    .stPlotlyChart {
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    /* Captions y textos pequeños más compactos */
+    .stCaption {
+        font-size: 0.75rem !important;
+        margin-top: 0.1rem !important;
+        margin-bottom: 0.1rem !important;
+    }
+    
+    /* Tabs más compactos */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0.3rem !important;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Inputs y controles más compactos */
+    [data-testid="stNumberInput"] label,
+    [data-testid="stSelectbox"] label,
+    [data-testid="stRadio"] label,
+    [data-testid="stDateInput"] label {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+    
+    /* Reducir padding en columnas */
+    [data-testid="column"] {
+        padding: 0.2rem !important;
+    }
+    
+    /* Compactar expansores */
+    [data-testid="stExpander"] summary {
+        font-size: 0.9rem !important;
+        padding: 0.3rem !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # Header con info de cuenta
 st.title("💰 Snowflake Cost Analyzer")
+
 account_info = get_account_info()
 
-# Mostrar información de cuenta (primera fila)
+# Mostrar información de cuenta (primera fila) - Estilo COLO Cards
 if account_info:
+    st.markdown("### 📋 Account Information")
     col_h1, col_h2, col_h3, col_h4 = st.columns(4)
     with col_h1:
         st.caption(f"🏢 **Account:** {account_info.get('account', 'N/A')}")
@@ -1003,9 +1195,188 @@ st.markdown("---")
 # Espacio reservado para mostrar información de fechas después de que se definan en el sidebar
 date_info_placeholder = st.empty()
 
-# Sidebar con filtros
+# Sidebar con resumen y filtros
 with st.sidebar:
+    # ========== INFORMACIÓN DE LA CUENTA (PARTE SUPERIOR) ==========
+    st.header("📋 Información de la Cuenta")
+    
+    # Contenedor compacto para información de cuenta
+    with st.container():
+        # Obtener fecha de activación
+        account_created_date = get_account_created_date()
+        current_date = datetime.now().date()
+        
+        if account_created_date:
+            # Convertir a date si es datetime
+            if isinstance(account_created_date, datetime):
+                account_created_date_only = account_created_date.date()
+            else:
+                account_created_date_only = account_created_date
+            
+            # Calcular días transcurridos
+            days_since_creation = (current_date - account_created_date_only).days
+            
+            # Estilos ultra-compactos para esta sección específica
+            st.markdown("""
+                <style>
+                /* Estilos ultra-compactos para métricas de Información de la Cuenta */
+                div[data-testid="stSidebar"] > div > div > div[data-testid="stMetric"] {
+                    margin-bottom: 0.1rem !important;
+                    padding: 0.2rem 0.3rem !important;
+                }
+                div[data-testid="stSidebar"] > div > div > div[data-testid="stMetric"] label {
+                    font-size: 0.65rem !important;
+                    padding-bottom: 0.03rem !important;
+                    margin-bottom: 0.03rem !important;
+                    line-height: 1.2 !important;
+                }
+                div[data-testid="stSidebar"] > div > div > div[data-testid="stMetric"] > div {
+                    font-size: 0.95rem !important;
+                    padding-top: 0.03rem !important;
+                    margin-top: 0.03rem !important;
+                    line-height: 1.25 !important;
+                }
+                div[data-testid="stSidebar"] div[data-testid="stVerticalBlock"]:first-of-type ~ div div[data-testid="stMetric"] {
+                    margin-bottom: 0.1rem !important;
+                    padding: 0.2rem 0.3rem !important;
+                }
+                div[data-testid="stSidebar"] div[data-testid="stVerticalBlock"]:first-of-type ~ div div[data-testid="stMetric"] label {
+                    font-size: 0.65rem !important;
+                    padding-bottom: 0.03rem !important;
+                    margin-bottom: 0.03rem !important;
+                }
+                div[data-testid="stSidebar"] div[data-testid="stVerticalBlock"]:first-of-type ~ div div[data-testid="stMetric"] > div {
+                    font-size: 0.95rem !important;
+                    padding-top: 0.03rem !important;
+                    margin-top: 0.03rem !important;
+                }
+                </style>
+            """, unsafe_allow_html=True)
+            
+            # Mostrar información
+            st.metric(
+                "📅 Fecha de Activación",
+                account_created_date_only.strftime('%Y-%m-%d'),
+                help="Fecha de creación de la cuenta Snowflake"
+            )
+            
+            st.metric(
+                "📆 Fecha Actual",
+                current_date.strftime('%Y-%m-%d'),
+                help="Fecha de hoy"
+            )
+            
+            st.metric(
+                "🕒 Días Transcurridos",
+                f"{days_since_creation:,.0f}",
+                help=f"Días desde la activación de la cuenta ({account_created_date_only.strftime('%Y-%m-%d')})"
+            )
+        else:
+            st.info("📅 Fecha de activación no disponible")
+            st.metric(
+                "📆 Fecha Actual",
+                current_date.strftime('%Y-%m-%d'),
+                help="Fecha de hoy"
+            )
+    
+    st.markdown("---")
+    
+    # ========== RESUMEN GENERAL (DESPUÉS DE INFORMACIÓN DE CUENTA) ==========
+    st.header("💰 Resumen General")
+    
+    # Campos editables
+    total_usd_contracted = st.number_input(
+        "Valor contratado (USD)",
+        min_value=0.0,
+        value=15000.0,
+        step=100.0,
+        help="Valor total en USD contratado o adquirido para créditos",
+        key="total_usd_contracted"
+    )
+    
+    credit_price_usd = st.number_input(
+        "Precio por crédito (USD)",
+        min_value=0.0,
+        value=3.0,
+        step=0.01,
+        help="Precio promedio de un crédito en USD",
+        key="credit_price_usd"
+    )
+    
+    # Calcular métricas desde el inicio de la cuenta
+    if credit_price_usd > 0:
+        # Obtener créditos consumidos desde el inicio
+        total_credits_consumed_from_start, _ = get_total_credits_consumed_from_start()
+        
+        # Calcular créditos contratados
+        credits_contracted = total_usd_contracted / credit_price_usd
+        
+        # Calcular USD gastados
+        usd_spent = total_credits_consumed_from_start * credit_price_usd
+        
+        # Calcular créditos restantes
+        credits_remaining = credits_contracted - total_credits_consumed_from_start
+        
+        # Calcular USD disponibles
+        usd_available = credits_remaining * credit_price_usd
+        
+        st.markdown("---")
+        st.markdown("### 📊 Métricas Calculadas")
+        
+        # Mostrar métricas destacadas
+        st.metric(
+            "Créditos Contratados",
+            f"{credits_contracted:,.2f}",
+            help=f"Calculado: ${total_usd_contracted:,.2f} / ${credit_price_usd:.2f}"
+        )
+        
+        st.metric(
+            "Créditos Consumidos",
+            f"{total_credits_consumed_from_start:,.2f}",
+            help="Total desde el inicio de la cuenta"
+        )
+        
+        st.metric(
+            "USD Gastados",
+            f"${usd_spent:,.2f}",
+            help=f"Calculado: {total_credits_consumed_from_start:,.2f} créditos × ${credit_price_usd:.2f}"
+        )
+        
+        st.metric(
+            "Créditos Restantes",
+            f"{credits_remaining:,.2f}",
+            delta=None if credits_remaining < 0 else None,
+            help="Diferencia entre contratados y consumidos"
+        )
+        
+        st.metric(
+            "USD Disponibles",
+            f"${usd_available:,.2f}",
+            help=f"Valor de créditos restantes: {credits_remaining:,.2f} × ${credit_price_usd:.2f}"
+        )
+        
+        # Indicador de estado
+        if credits_remaining < 0:
+            st.error(f"⚠️ Excedido por {abs(credits_remaining):,.2f} créditos")
+        elif credits_remaining < (credits_contracted * 0.1) and credits_remaining > 0:
+            percentage = (credits_remaining / credits_contracted * 100) if credits_contracted > 0 else 0
+            st.warning(f"⚠️ {percentage:.2f}% restante")
+        elif credits_remaining >= 0:
+            percentage = (credits_remaining / credits_contracted * 100) if credits_contracted > 0 else 0
+            st.success(f"✅ {percentage:.2f}% disponible")
+    
+    else:
+        st.info("⚠️ Ingresa un precio por crédito mayor a 0")
+    
+    st.markdown("---")
+    
+    # ========== FILTROS (PARTE INFERIOR) ==========
     st.header("📅 Filtros Globales")
+    
+    # Inicializar filtros como listas vacías
+    warehouses = []
+    roles = []
+    users = []
     
     # Filtros de fecha
     st.subheader("Período de Análisis")
@@ -1030,21 +1401,6 @@ with st.sidebar:
             start_date = st.date_input("Inicio", value=datetime.now() - timedelta(days=30))
         with col_d2:
             end_date = st.date_input("Fin", value=datetime.now())
-    
-    # Configuración
-    # Inicializar filtros como listas vacías (filtros adicionales removidos)
-    warehouses = []
-    roles = []
-    users = []
-    
-    st.subheader("⚙️ Configuración")
-    credit_price_usd = st.number_input(
-        "Precio de crédito (USD)",
-        min_value=0.0,
-        value=3.0,
-        step=0.01,
-        help="Precio promedio de un crédito en USD (default: 3.0)"
-    )
     
 
 # Calcular días del período para usar en todas las tabs
@@ -1113,7 +1469,7 @@ with tab_overview:
     with col1:
         st.metric(
             "Total Créditos Gastados",
-            f"{total_credits_gastados:.4f}",
+            f"{total_credits_gastados:.2f}",
             help="Suma de créditos consumidos en el período"
         )
     
@@ -1121,13 +1477,13 @@ with tab_overview:
         st.metric(
             "Costo USD Gastado",
             f"${cost_usd_gastado:.2f}",
-            help=f"Basado en {credit_price_usd} USD por crédito"
+            help=f"Basado en {credit_price_usd:.2f} USD por crédito"
         )
     
     with col3:
         st.metric(
             "Promedio Diario",
-            f"{avg_daily:.4f}",
+            f"{avg_daily:.2f}",
             help="Créditos promedio por día"
         )
     
@@ -1163,7 +1519,7 @@ with tab_overview:
                     texttemplate='%{label}<br>%{percent}',
                     textposition='outside',
                     hovertemplate='<b>%{label}</b><br>' +
-                                'Créditos: %{value:.4f}<br>' +
+                                'Créditos: %{value:.2f}<br>' +
                                 'Porcentaje: %{percent}<br>' +
                                 'USD: $%{customdata:.2f}<extra></extra>',
                     customdata=service_df['COST_USD']
@@ -1185,7 +1541,7 @@ with tab_overview:
             for idx, row in service_df.head(5).iterrows():
                 with st.container():
                     st.markdown(f"**{row['SERVICE_TYPE']}**")
-                    st.caption(f"{row['PERCENTAGE']:.1f}% • {row['TOTAL_CREDITS']:.4f} créditos")
+                    st.caption(f"{row['PERCENTAGE']:.2f}% • {row['TOTAL_CREDITS']:.2f} créditos")
         
         st.markdown("---")
         
@@ -1214,7 +1570,7 @@ with tab_overview:
                 
                 col_d1, col_d2, col_d3 = st.columns(3)
                 with col_d1:
-                    st.metric("Créditos", f"{detail_data['TOTAL_CREDITS']:.4f}")
+                    st.metric("Créditos", f"{detail_data['TOTAL_CREDITS']:.2f}")
                 with col_d2:
                     st.metric("Porcentaje", f"{detail_data['PERCENTAGE']:.2f}%")
                 with col_d3:
@@ -1233,7 +1589,7 @@ with tab_overview:
         else:
             # Mostrar todas las categorías
             st.dataframe(service_df[['SERVICE_TYPE', 'TOTAL_CREDITS', 'PERCENTAGE', 'RECORD_COUNT']].style.format({
-                'TOTAL_CREDITS': '{:.6f}',
+                'TOTAL_CREDITS': '{:.2f}',
                 'PERCENTAGE': '{:.2f}%',
                 'RECORD_COUNT': '{:,.0f}'
             }), use_container_width=True)
@@ -1294,11 +1650,11 @@ with tab_compute:
         
         col_m1, col_m2, col_m3, col_m4 = st.columns(4)
         with col_m1:
-            st.metric("Total Créditos", f"{total_credits_compute:.4f}")
+            st.metric("Total Créditos", f"{total_credits_compute:.2f}")
         with col_m2:
             st.metric("Costo USD", f"${cost_usd_compute:.2f}")
         with col_m3:
-            st.metric("Promedio Diario", f"{avg_daily_compute:.4f}")
+            st.metric("Promedio Diario", f"{avg_daily_compute:.2f}")
         with col_m4:
             st.metric("WHs Únicos", warehouse_stats['WAREHOUSE_NAME'].nunique())
         
@@ -1325,7 +1681,7 @@ with tab_compute:
         warehouse_stats_display = warehouse_stats_display[cols_order]
         st.dataframe(
             warehouse_stats_display.style.format({
-                'TOTAL_CREDITS': '{:.4f}',
+                'TOTAL_CREDITS': '{:.2f}',
                 'COST_USD': '${:.2f}'
             }),
             use_container_width=True
@@ -1380,8 +1736,8 @@ with tab_storage:
         st.subheader("Almacenamiento por Base de Datos")
         recent_storage = storage_stats.drop_duplicates('DATABASE_NAME', keep='first')
         # Storage se cobra mensualmente por TB, usando precio estándar aproximado
-        # Snowflake cobra aproximadamente $40 USD por TB/mes (varía por región)
-        storage_price_per_tb_month = 40.0  # Precio aproximado USD por TB por mes
+        # Snowflake cobra aproximadamente $23 USD por TB/mes (varía por región)
+        storage_price_per_tb_month = 23.0  # Precio aproximado USD por TB por mes
         recent_storage_display = recent_storage.copy()
         # Calcular costo mensual estimado
         recent_storage_display['COST_USD_MONTHLY'] = recent_storage_display['TB'] * storage_price_per_tb_month
@@ -1423,7 +1779,7 @@ with tab_storage:
         
         cols_order = ['DATABASE_NAME', 'TB', 'COST_USD', 'USAGE_DATE']
         st.dataframe(recent_storage_display[cols_order], use_container_width=True)
-        st.caption("💡 Nota: Storage se cobra mensualmente (~$40 USD/TB/mes). El costo mostrado es proporcional al período evaluado.")
+        st.caption("💡 Nota: Storage se cobra mensualmente (~$23 USD/TB/mes). El costo mostrado es proporcional al período evaluado.")
         
         # Tendencia temporal
         storage_trend = storage_stats.groupby('USAGE_DATE')['TB'].sum().reset_index()
@@ -1462,7 +1818,7 @@ with tab_transfer:
         with col_t1:
             st.metric("Total GB", f"{total_gb:.2f}")
         with col_t2:
-            st.metric("Total TB", f"{total_tb:.3f}")
+            st.metric("Total TB", f"{total_tb:.2f}")
         with col_t3:
             st.metric("Tipos Únicos", unique_types)
         with col_t4:
@@ -1525,11 +1881,11 @@ with tab_cortex:
         
         col_cx1, col_cx2, col_cx3, col_cx4 = st.columns(4)
         with col_cx1:
-            st.metric("Total Créditos", f"{total_credits_cortex:.4f}")
+            st.metric("Total Créditos", f"{total_credits_cortex:.2f}")
         with col_cx2:
             st.metric("Costo USD", f"${cost_usd_cortex:.2f}")
         with col_cx3:
-            st.metric("Promedio Diario", f"{avg_daily_cortex:.4f}")
+            st.metric("Promedio Diario", f"{avg_daily_cortex:.2f}")
         with col_cx4:
             st.metric("Invocaciones", f"{cortex_stats['INVOCATIONS'].sum():,}")
         
@@ -1645,7 +2001,7 @@ with tab_queries:
         # Mostrar tabla con formato numérico
         st.dataframe(
             display_df[display_cols].style.format({
-                'CREDITS_CONSUMED': '{:.6f}',
+                'CREDITS_CONSUMED': '{:.2f}',
                 'COST_USD': '${:.2f}',
                 'BYTES_SCANNED_MB': '{:.2f}',
                 'TOTAL_ELAPSED_TIME_SEC': '{:.2f}'
@@ -1668,7 +2024,7 @@ with tab_queries:
                 with col_q2:
                     st.metric("Bytes Escaneados", f"{query_detail['BYTES_SCANNED']:,}")
                 with col_q3:
-                    st.metric("Creds Cloud Svcs", f"{query_detail.get('CREDITS_USED_CLOUD_SERVICES', 0):.4f}")
+                    st.metric("Creds Cloud Svcs", f"{query_detail.get('CREDITS_USED_CLOUD_SERVICES', 0):.2f}")
         
         with st.expander("📥 Exportar"):
             csv = queries.to_csv(index=False)
@@ -1704,11 +2060,11 @@ with tab_usuarios:
     with col_u1:
         st.metric("Usuarios Activos", total_users, help="Usuarios con actividad en el período")
     with col_u2:
-        st.metric("Total Créditos", f"{total_credits_users:.4f}")
+        st.metric("Total Créditos", f"{total_credits_users:.2f}")
     with col_u3:
         st.metric("Costo USD", f"${cost_usd_users:.2f}")
     with col_u4:
-        st.metric("Promedio Diario", f"{avg_daily_users:.4f}")
+        st.metric("Promedio Diario", f"{avg_daily_users:.2f}")
     
     st.markdown("---")
     
@@ -1736,11 +2092,11 @@ with tab_usuarios:
             fig.add_trace(go.Bar(
                 x=top_users['USER_NAME'],
                 y=top_users['TOTAL_CREDITS'],
-                text=[f"{row['TOTAL_CREDITS']:.4f} créditos<br>${row['COST_USD']:.2f} USD" 
+                text=[f"{row['TOTAL_CREDITS']:.2f} créditos<br>${row['COST_USD']:.2f} USD" 
                       for _, row in top_users.iterrows()],
                 textposition='outside',
                 hovertemplate='<b>%{x}</b><br>' +
-                            'Créditos: %{y:.4f}<br>' +
+                            'Créditos: %{y:.2f}<br>' +
                             'Costo USD: %{customdata[0]}<br>' +
                             'Porcentaje: %{customdata[1]}<extra></extra>',
                 customdata=hover_data,
@@ -1766,7 +2122,7 @@ with tab_usuarios:
         # Tabla de usuarios
         st.dataframe(
             top_users[['USER_NAME', 'TOTAL_CREDITS', 'COST_USD', 'PERCENTAGE', 'QUERY_COUNT']].style.format({
-                'TOTAL_CREDITS': '{:.4f}',
+                'TOTAL_CREDITS': '{:.2f}',
                 'COST_USD': '${:.2f}',
                 'PERCENTAGE': '{:.2f}%'
             }),
@@ -1807,11 +2163,11 @@ with tab_roles:
     with col_r1:
         st.metric("Roles Activos", total_roles, help="Roles con actividad en el período")
     with col_r2:
-        st.metric("Total Créditos", f"{total_credits_roles:.4f}")
+        st.metric("Total Créditos", f"{total_credits_roles:.2f}")
     with col_r3:
         st.metric("Costo USD", f"${cost_usd_roles:.2f}")
     with col_r4:
-        st.metric("Promedio Diario", f"{avg_daily_roles:.4f}")
+        st.metric("Promedio Diario", f"{avg_daily_roles:.2f}")
     
     st.markdown("---")
     
@@ -1852,7 +2208,7 @@ with tab_roles:
         
         # Texto simplificado para mostrar en cada barra (más legible)
         bar_text = [
-            f"{row['TOTAL_CREDITS']:.4f}<br>${row['COST_USD']:.2f}" 
+            f"{row['TOTAL_CREDITS']:.2f}<br>${row['COST_USD']:.2f}" 
             for _, row in roles_for_chart.iterrows()
         ]
         
@@ -1865,7 +2221,7 @@ with tab_roles:
                 textposition='outside',
                 textfont=dict(size=10),
                 hovertemplate='<b>%{x}</b><br>' +
-                            'Créditos: %{y:.4f}<br>' +
+                            'Créditos: %{y:.2f}<br>' +
                             'Costo USD: %{customdata[0]}<br>' +
                             'Porcentaje: %{customdata[1]}<extra></extra>',
                 customdata=hover_data,
@@ -1896,7 +2252,7 @@ with tab_roles:
         st.subheader("📋 Detalle - Top 20 Roles")
         st.dataframe(
             top_roles[['ROLE_NAME', 'TOTAL_CREDITS', 'COST_USD', 'PERCENTAGE', 'QUERY_COUNT']].style.format({
-                'TOTAL_CREDITS': '{:.4f}',
+                'TOTAL_CREDITS': '{:.2f}',
                 'COST_USD': '${:.2f}',
                 'PERCENTAGE': '{:.2f}%'
             }),
@@ -1957,11 +2313,11 @@ with tab_tags:
                 with col_t1:
                     st.metric("Tags Únicos", len(tag_data))
                 with col_t2:
-                    st.metric("Total Créditos", f"{total_tag_credits:.4f}")
+                    st.metric("Total Créditos", f"{total_tag_credits:.2f}")
                 with col_t3:
                     st.metric("Costo USD", f"${cost_usd_tags:.2f}")
                 with col_t4:
-                    st.metric("Promedio Diario", f"{avg_daily_tags:.4f}")
+                    st.metric("Promedio Diario", f"{avg_daily_tags:.2f}")
                 
                 st.markdown("---")
                 
