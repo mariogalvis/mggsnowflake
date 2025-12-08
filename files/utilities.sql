@@ -1,3 +1,50 @@
+CREATE OR REPLACE TABLE CLIENTES (
+  tripduration            INTEGER,
+  starttime               TIMESTAMP,
+  stoptime                TIMESTAMP,
+  start_station_id        INTEGER,
+  start_station_name      STRING,
+  start_station_latitude  FLOAT,
+  start_station_longitude FLOAT,
+  end_station_id          INTEGER,
+  end_station_name        STRING,
+  end_station_latitude    FLOAT,
+  end_station_longitude   FLOAT,
+  bikeid                  INTEGER,
+  membership_type         STRING,
+  usertype                STRING,
+  birth_year              INTEGER,
+  gender                  INTEGER
+);
+
+CREATE STAGE S3_EXTERNAL_STAGE
+  URL     = 's3://snowflake-workshop-lab/japan/citibike-trips/'
+  COMMENT = 'Stage Externo para el cargado de datos desde Cloud';
+
+CREATE STAGE SF_INTERNAL_STAGE
+  DIRECTORY = (ENABLE = TRUE);
+
+CREATE OR REPLACE FILE FORMAT CSV
+  TYPE                           = 'CSV'
+  COMPRESSION                    = 'AUTO'
+  FIELD_DELIMITER                = ','
+  RECORD_DELIMITER               = '\n'
+  SKIP_HEADER                    = 0
+  FIELD_OPTIONALLY_ENCLOSED_BY   = '\042'
+  TRIM_SPACE                     = FALSE
+  ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE
+  ESCAPE                         = 'NONE'
+  ESCAPE_UNENCLOSED_FIELD        = '\134'
+  DATE_FORMAT                    = 'AUTO'
+  TIMESTAMP_FORMAT               = 'AUTO'
+  NULL_IF                        = ('')
+  COMMENT                        = 'Formato de archivo para el cargado de los datos del stage';
+
+COPY INTO clientes
+  FROM @S3_EXTERNAL_STAGE/trips
+  FILE_FORMAT = CSV;
+
+
 CREATE OR REPLACE VIEW VISTA_CLIENTES_VIP AS
 SELECT CC_NAME
 FROM (SELECT * FROM SNOWFLAKE_SAMPLE_DATA.TPCDS_SF100TCL.CALL_CENTER);
