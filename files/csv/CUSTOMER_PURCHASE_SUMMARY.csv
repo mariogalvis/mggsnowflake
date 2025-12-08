@@ -1,0 +1,272 @@
+TRANSACTION_ID,CUSTOMER_ID,CUSTOMER_AGE,PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATEGORY,MERCHANT_ID,MERCHANT_NAME,MERCHANT_CATEGORY,TRANSACTION_DATE,TRANSACTION_TIME,QUANTITY,TOTAL_PRICE,TRANSACTION_CARD,TRANSACTION_CATEGORY
+9fc5c0d3-490e-4b9f-80dd-bb3856515c89,42046,46,102,Phone,Tech,56,Microsoft,Tech,2024-09-04,19:07:51,10,8906.9,Visa,Purchase
+cfd44aa8-b162-4d4d-9436-4d5fb2660e76,31596,63,199,Coffee,Food,40,Starbucks,Food,2024-03-10,13:50:58,2,1342.1,Visa,Purchase
+636cc9c5-00cc-44a4-9811-2e1c3e2e8968,26573,87,160,Shoes,Fashion,34,Nike,Fashion,2024-01-25,11:57:04,1,666.62,American Express,Purchase
+986cb792-a55c-4946-bebe-d84933e74e29,45238,23,159,Toiletries,Retail,13,Amazon,Retail,2024-01-25,10:35:31,8,8238.48,Visa,Refund
+b7db2c17-8d8b-4954-8ab9-3c32249e2de1,7632,62,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-02-24,13:57:51,4,5524.04,Mastercard,Purchase
+74909c0e-bee2-4cc5-80ce-eaf60c558ee0,29540,63,199,Coffee,Food,40,Starbucks,Food,2024-01-27,23:05:57,10,6710.5,Visa,Purchase
+116c75fb-ae53-436a-b521-84f098551669,15528,25,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-03-21,19:07:10,1,1337.95,Discover,Refund
+13bedac9-12f9-490e-b312-1a7d10546b4a,15528,25,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-02-19,20:12:47,8,4092.8,Mastercard,Refund
+188c2178-4549-477b-b224-83fc60d95e52,23585,21,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-07-10,07:25:39,4,3908.4,Visa,Purchase
+bf0c8fc3-d5bf-4b1d-bddb-90c94af644dd,6253,74,199,Coffee,Food,35,McDonald's,Food,2024-02-17,12:57:54,5,3355.25,American Express,Refund
+c33c6606-4b68-4068-a140-d5d88aef72a3,49920,53,160,Shoes,Fashion,42,Adidas,Fashion,2024-09-06,09:10:29,10,6666.2,Visa,Refund
+08a20c22-3057-4f11-ac78-a4e0777ac302,41214,24,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-02-10,02:25:06,1,1337.95,Visa,Purchase
+ce3380f1-c118-4e64-8f55-53fd496d27ab,49185,48,160,Shoes,Fashion,34,Nike,Fashion,2024-09-05,20:33:53,9,5999.58,Visa,Refund
+ab7e3515-b314-4f5e-9315-a90eba3d9aa6,35763,79,189,Jacket,Fashion,42,Adidas,Fashion,2024-04-22,20:43:52,6,4047.78,American Express,Purchase
+ff8b63e9-4ca4-48c1-a95e-65c538c8455c,42126,87,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2023-10-25,21:22:50,3,4013.85,Discover,Refund
+b97e8af9-deaa-4cc5-9440-b80b0446ae25,42794,48,119,Laptop,Tech,56,Microsoft,Tech,2024-02-27,04:11:33,5,4290.75,Discover,Purchase
+8f0e0443-ca17-466d-ac74-217982158da4,20144,60,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2023-11-06,07:56:23,4,5524.04,Visa,Refund
+1a2985e9-7d08-4d3a-9db5-0c0abf747674,49782,73,160,Shoes,Fashion,42,Adidas,Fashion,2024-05-20,07:44:09,6,3999.72,Discover,Purchase
+971f020a-9a30-49bf-a2bd-7eae4fe4273a,8511,23,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-08-17,22:41:29,4,1389.6,American Express,Purchase
+e71ba328-aaff-406b-ae8d-aeb6678e0040,5992,20,102,Phone,Tech,55,Apple,Tech,2024-10-05,21:44:51,1,890.69,Visa,Purchase
+faf30f08-7786-4961-9842-3d9a6f856b0b,21753,23,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2023-12-13,14:56:08,1,1337.95,Mastercard,Purchase
+ea1fb0ce-d60e-4e38-b49b-a39c8217ded7,47265,58,102,Phone,Tech,56,Microsoft,Tech,2024-10-06,15:14:17,9,8016.21,Visa,Purchase
+76106683-f6bc-4527-b544-69471c2d3a6c,2936,82,159,Toiletries,Retail,13,Amazon,Retail,2023-11-25,04:28:39,2,2059.62,Discover,Purchase
+b3503adc-1964-4e1f-96e4-29e6fc1100c3,43521,48,144,Vegetables,Produce,64,Trader Joe's,Produce,2023-11-14,15:33:50,8,2779.2,American Express,Purchase
+8740797d-cd42-45d5-9b9c-dc91a71f40b3,8092,30,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-08-04,22:20:15,9,12041.55,Mastercard,Refund
+306fa12b-8a73-43c1-a40a-c0613be9a320,11774,85,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-05-13,04:02:36,10,13810.1,Visa,Purchase
+ef543e97-ff5e-4116-a17b-3a539f648973,33019,31,169,Fruits,Produce,33,Whole Foods,Produce,2023-11-11,14:21:52,3,3708.6,Discover,Purchase
+958ea7df-c899-4c88-a24a-47ff94bf2d1f,2634,60,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-06-29,08:08:30,3,1534.8,American Express,Purchase
+39345b78-f5f1-4437-9cbc-0e8517ecff60,25510,79,199,Coffee,Food,35,McDonald's,Food,2024-09-29,18:33:14,3,2013.15,Mastercard,Purchase
+61b8629a-fc32-4f1d-a68a-72e3b4c51bb9,31030,51,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2023-10-29,00:47:31,1,1337.95,American Express,Purchase
+32d285de-7ba5-4c78-ae27-bc3c42633b58,18284,18,159,Toiletries,Retail,13,Amazon,Retail,2024-06-18,07:56:58,3,3089.43,Mastercard,Refund
+7877d615-5a1a-4659-ac86-e51333b31e5e,19854,35,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-05-17,08:57:18,7,2431.8,Visa,Purchase
+aa508a13-50bc-43ce-bb78-1636a6f4a2d2,46001,66,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-03-26,17:23:19,6,8027.7,Discover,Purchase
+d3637513-809b-472d-8464-151ddf35c5ea,44128,57,169,Fruits,Produce,33,Whole Foods,Produce,2024-02-06,11:46:44,4,4944.8,Visa,Refund
+e1e40ebc-fa8d-4822-8c4d-1006827d1229,4196,56,199,Coffee,Food,35,McDonald's,Food,2024-06-05,09:15:51,6,4026.3,Visa,Purchase
+6f520d17-4f4d-4a0a-895e-b7d3639ba660,39454,65,169,Fruits,Produce,33,Whole Foods,Produce,2024-05-09,10:23:43,6,7417.2,American Express,Refund
+f1c8ad0b-1268-46f7-ae89-52a4403cb62a,42502,69,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-05-14,11:48:31,7,3581.2,Discover,Purchase
+e0b6103f-bf61-4c28-8f13-97070af2fd6b,47950,50,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-02-12,02:51:15,10,9771,Discover,Refund
+1577a8ce-0396-4b45-a72d-795ff32eab1d,36034,86,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-04-13,12:03:08,10,5116,Discover,Purchase
+e343557c-afa0-4cc4-8962-62614e252498,2888,59,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-04-18,13:13:54,4,5351.8,American Express,Purchase
+50f03642-e3e1-48fa-9033-f88a16caf940,3079,82,189,Jacket,Fashion,34,Nike,Fashion,2023-12-30,15:16:54,5,3373.15,Mastercard,Purchase
+7a699abe-2f92-4f6d-8b0c-ca8d2a046b82,12902,78,160,Shoes,Fashion,34,Nike,Fashion,2024-04-09,16:00:56,4,2666.48,American Express,Purchase
+559daae6-40c6-487d-810e-ad6ab9305d84,22513,77,160,Shoes,Fashion,42,Adidas,Fashion,2024-02-26,16:08:27,4,2666.48,Discover,Refund
+2dcf4001-578a-400d-ae35-9f01535ea63c,2094,18,159,Toiletries,Retail,13,Amazon,Retail,2024-05-10,00:20:40,7,7208.67,Mastercard,Purchase
+586e4646-c78b-4d48-8519-160590bfa457,15944,40,159,Toiletries,Retail,3,Walmart,Retail,2024-02-13,06:13:13,8,8238.48,Discover,Refund
+9522d257-7767-4767-8b6d-82f6e53ed94b,1912,67,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-03-20,16:19:10,7,9667.07,Visa,Purchase
+9bbd68eb-e612-4ab3-8164-ff8ecae04240,31909,59,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-08-20,01:47:45,9,4604.4,Mastercard,Purchase
+b9337874-c1f1-4c18-95ee-b3e158ca3b99,16722,38,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-01-27,22:06:55,6,8286.06,Visa,Purchase
+c97b0107-747a-44d5-accc-d24318fcbb86,31083,80,199,Coffee,Food,40,Starbucks,Food,2024-08-03,00:19:52,10,6710.5,Mastercard,Purchase
+4f9d9569-0818-4917-b727-de57b4149ee1,27333,73,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2023-10-20,17:39:16,9,12041.55,Mastercard,Refund
+74026850-aceb-4007-aab1-d620786e9c30,7690,25,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-06-16,21:58:57,2,2762.02,Mastercard,Purchase
+8f3dd978-3b66-4bce-9b15-43946bba788f,31718,18,119,Laptop,Tech,56,Microsoft,Tech,2024-07-14,04:14:31,5,4290.75,American Express,Purchase
+632d9164-1bd3-4daa-b6e3-253b51aa79ed,21790,29,160,Shoes,Fashion,42,Adidas,Fashion,2024-08-04,15:24:51,2,1333.24,Discover,Refund
+55ea619d-8c2c-4b56-a782-bdfc592e0fed,49501,24,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-07-19,18:02:17,3,4013.85,Discover,Purchase
+104865c1-f99f-46af-a318-2c89a4bbdbf3,36939,89,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-03-24,18:02:49,4,5524.04,American Express,Purchase
+97775de4-4d6c-4dd9-9e9c-a8b36218acd5,47690,76,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-01-19,10:03:41,9,8793.9,Discover,Purchase
+7b0bdf7f-5929-40e8-8ef4-c32167d9657e,40676,37,160,Shoes,Fashion,34,Nike,Fashion,2024-02-29,09:12:23,9,5999.58,Discover,Purchase
+61295b67-b1d3-4d39-9889-c479e908350c,18373,35,189,Jacket,Fashion,42,Adidas,Fashion,2024-02-08,03:57:12,9,6071.67,Discover,Purchase
+cc67ab1d-e8dc-4c98-996e-18d0cd2cf8e4,2717,23,102,Phone,Tech,56,Microsoft,Tech,2024-07-11,10:07:08,6,5344.14,American Express,Purchase
+513f067b-8227-4fe7-a6bc-907765201bc8,18641,55,160,Shoes,Fashion,34,Nike,Fashion,2024-08-07,07:20:51,5,3333.1,Visa,Purchase
+e2aa46f5-7b3e-4bdb-9966-b941133162c4,20604,70,159,Toiletries,Retail,3,Walmart,Retail,2024-07-05,03:52:35,1,1029.81,Mastercard,Refund
+41ef47e1-a0ed-4d98-88e9-584ee8eed93a,43684,27,160,Shoes,Fashion,34,Nike,Fashion,2024-06-27,15:56:30,5,3333.1,Mastercard,Purchase
+228d3e33-e53a-406c-9233-a3e7cf2a111e,1319,21,144,Vegetables,Produce,33,Whole Foods,Produce,2024-09-11,16:34:34,1,347.4,Mastercard,Purchase
+5a88a9be-0747-48b2-aa0f-6dbbeba14738,2487,68,144,Vegetables,Produce,64,Trader Joe's,Produce,2023-10-14,19:17:50,10,3474,American Express,Purchase
+f0662f66-47d3-4347-acc5-10b0de2ca557,41047,18,159,Toiletries,Retail,3,Walmart,Retail,2024-04-30,23:07:16,3,3089.43,American Express,Purchase
+56b992e6-ae3c-4606-aa08-85c65cf23cf1,35177,50,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-04-18,14:04:29,3,2931.3,Mastercard,Purchase
+c5d63725-0751-4cca-abab-98bb391f1467,40744,83,189,Jacket,Fashion,34,Nike,Fashion,2024-08-31,16:38:25,4,2698.52,Mastercard,Purchase
+fd7f1ea8-bbd5-47da-b902-3cb9b3f5128c,44651,87,102,Phone,Tech,55,Apple,Tech,2024-05-19,16:56:50,5,4453.45,Discover,Purchase
+fb2c162d-25b9-4161-98b5-855366cd9070,49926,80,119,Laptop,Tech,56,Microsoft,Tech,2024-08-05,14:10:51,5,4290.75,Mastercard,Refund
+0175f6d0-a539-466d-b2bb-6bccc8c327f6,41001,38,160,Shoes,Fashion,42,Adidas,Fashion,2023-11-05,02:31:14,5,3333.1,Discover,Purchase
+63ef8300-015d-4721-8a6b-66d4dcd56ab9,47310,66,144,Vegetables,Produce,33,Whole Foods,Produce,2024-01-13,17:19:53,6,2084.4,Visa,Refund
+95942dd1-6892-4f65-a437-e909c569acb4,20124,45,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-06-19,12:19:47,5,6689.75,Discover,Purchase
+579f3a1d-19d1-4781-9a3f-72beb8beef1c,37588,85,102,Phone,Tech,56,Microsoft,Tech,2024-09-05,15:58:46,7,6234.83,Mastercard,Purchase
+84718369-c3db-46f6-bb71-213c0c68da53,37588,85,169,Fruits,Produce,64,Trader Joe's,Produce,2024-02-07,21:47:27,5,6181,American Express,Purchase
+96dfd844-b701-496b-9de9-3ba405c06ab7,24332,18,144,Vegetables,Produce,64,Trader Joe's,Produce,2023-12-13,16:59:32,7,2431.8,Discover,Purchase
+dee83d01-8c1a-424f-b2ae-bcefb4bfd423,45763,46,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2023-10-12,06:23:51,4,3908.4,Mastercard,Purchase
+3c400a61-007a-4b41-bc1f-91fd31da8d9c,26521,63,169,Fruits,Produce,33,Whole Foods,Produce,2024-07-10,15:22:54,8,9889.6,Visa,Purchase
+61f76f2a-e255-4e19-8efc-7b206c9c025a,2418,57,144,Vegetables,Produce,33,Whole Foods,Produce,2024-06-13,04:58:14,2,694.8,Mastercard,Refund
+df04e855-c254-450a-a370-88cba503309a,22157,79,189,Jacket,Fashion,34,Nike,Fashion,2023-11-14,02:05:45,2,1349.26,Mastercard,Purchase
+8b9b7071-3a55-4030-9d9c-1d7a651a2c1f,5798,38,159,Toiletries,Retail,3,Walmart,Retail,2023-10-17,20:09:25,8,8238.48,Visa,Purchase
+78983a4b-41d4-450c-9ae4-bd6afd117836,22415,40,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-07-21,03:19:22,4,3908.4,Discover,Purchase
+93ee93dc-971b-4112-aaa5-83e3785566e6,1331,37,199,Coffee,Food,35,McDonald's,Food,2023-12-01,09:55:33,4,2684.2,Discover,Purchase
+5e463ed4-053e-4957-8ea2-6f5a257a836b,33666,19,102,Phone,Tech,55,Apple,Tech,2024-08-02,00:12:39,2,1781.38,American Express,Refund
+7263e918-a67c-445d-91f8-d55595bf47dc,42051,76,102,Phone,Tech,55,Apple,Tech,2023-12-22,10:05:31,2,1781.38,Visa,Purchase
+1f1f4488-bf80-499b-a4ae-d6ecc1643ee8,36573,61,199,Coffee,Food,35,McDonald's,Food,2024-06-30,15:01:00,6,4026.3,Mastercard,Purchase
+0f830ca2-37bd-4f4c-8125-8efcfd5e0895,3669,61,102,Phone,Tech,56,Microsoft,Tech,2024-08-01,11:57:42,5,4453.45,American Express,Purchase
+19e4b128-f585-4a1e-aad7-ed67a4211278,35823,80,169,Fruits,Produce,33,Whole Foods,Produce,2023-10-14,18:39:05,1,1236.2,American Express,Purchase
+ef63c823-d0c7-4b5c-872d-ea2ec606850d,35062,22,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-01-10,05:25:41,5,6905.05,Discover,Purchase
+7b219bd6-9964-4795-bfcc-2cb37b60bb01,2908,57,119,Laptop,Tech,56,Microsoft,Tech,2024-03-19,07:49:43,8,6865.2,Visa,Purchase
+a841f724-d8c7-4dde-8163-e9ccb66717ff,6205,83,119,Laptop,Tech,55,Apple,Tech,2024-09-30,21:09:56,8,6865.2,Visa,Purchase
+34fc5d0d-5a9a-40ed-b96b-3e4c4239a746,27004,30,119,Laptop,Tech,56,Microsoft,Tech,2024-04-09,11:50:36,3,2574.45,Visa,Purchase
+dc23787c-7c93-4d11-a503-76fcb351a087,33144,79,159,Toiletries,Retail,13,Amazon,Retail,2024-01-14,17:18:55,2,2059.62,Mastercard,Purchase
+6e1d025d-0664-4ae2-9714-79ede6229290,29662,88,159,Toiletries,Retail,13,Amazon,Retail,2024-09-12,04:50:11,2,2059.62,American Express,Purchase
+429e315d-d958-49f5-93ec-b0dca18655a6,30771,19,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2023-10-30,00:00:31,2,2762.02,American Express,Refund
+928cf208-2e37-4393-b621-d2608be9ab16,27494,76,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-07-16,23:29:05,1,511.6,Visa,Purchase
+a38d5c0b-392f-44ce-b52e-c5a31b1326df,6492,42,199,Coffee,Food,40,Starbucks,Food,2024-04-12,14:41:51,1,671.05,Visa,Purchase
+aaa36f1f-6b3c-4c7d-99fd-3da46d922309,49482,71,199,Coffee,Food,35,McDonald's,Food,2024-07-17,11:44:47,5,3355.25,Visa,Refund
+9ea71e32-19bb-4096-b89a-6e0c58a4c6f1,19997,64,159,Toiletries,Retail,13,Amazon,Retail,2023-11-17,12:54:54,10,10298.1,Discover,Purchase
+561ad0a5-64f0-46af-837d-c67a7402f974,4486,88,199,Coffee,Food,35,McDonald's,Food,2024-02-28,19:14:14,9,6039.45,American Express,Purchase
+f0c238f8-5793-4a68-9066-c16b2914e181,7530,21,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2023-11-22,09:39:14,7,6839.7,American Express,Purchase
+e0dc9f0f-9c0b-4959-867b-333d35d56d42,31167,27,119,Laptop,Tech,55,Apple,Tech,2024-06-07,12:45:48,1,858.15,Discover,Purchase
+65061290-f3bf-413f-bfd3-17641dc5005e,22401,65,199,Coffee,Food,40,Starbucks,Food,2024-03-27,19:51:54,2,1342.1,American Express,Purchase
+77bce9eb-16af-4c12-904f-5484c3e9d2de,11544,21,199,Coffee,Food,40,Starbucks,Food,2024-08-27,21:27:20,6,4026.3,Mastercard,Purchase
+f52a1a84-f6c5-4b2d-839a-46d363dd8494,28803,52,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2023-12-18,02:58:32,7,9365.65,Visa,Refund
+610be74f-46ad-4a75-9c6d-7f3a24c5b6e3,2557,44,119,Laptop,Tech,56,Microsoft,Tech,2024-04-21,14:14:54,10,8581.5,American Express,Purchase
+2ec9face-ac17-4272-a369-a11ab21b301d,33158,73,102,Phone,Tech,56,Microsoft,Tech,2024-04-05,16:28:33,1,890.69,Visa,Purchase
+3edf6f62-5b55-4e04-b625-6cc2df4ee51e,18701,57,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-01-28,16:09:15,4,3908.4,Mastercard,Refund
+f326ad30-fae2-4ff8-962e-4d07961efdc8,6814,23,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-09-03,19:08:28,4,1389.6,American Express,Purchase
+66b5e922-1846-4733-b945-929ba04c5d54,39940,51,199,Coffee,Food,35,McDonald's,Food,2024-05-23,03:58:53,6,4026.3,Mastercard,Purchase
+bb0cadcf-cd4f-48b7-92ae-afd9c559472a,9613,66,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-07-22,07:36:34,5,4885.5,American Express,Purchase
+5f009e92-167e-481a-8739-4dca9ff66e8e,6403,70,144,Vegetables,Produce,33,Whole Foods,Produce,2023-11-04,18:22:39,3,1042.2,Discover,Purchase
+1785f10c-7e9f-4bb8-951e-de14bd53d0b3,34918,29,189,Jacket,Fashion,42,Adidas,Fashion,2024-05-15,09:54:03,4,2698.52,Visa,Purchase
+e930d98b-eb73-403d-a262-a217fecda14d,10745,52,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-10-07,13:49:53,6,8027.7,Visa,Refund
+ce8c05b6-b83a-4889-a526-a3a7ce06f419,36967,51,169,Fruits,Produce,33,Whole Foods,Produce,2024-08-17,18:19:03,9,11125.8,American Express,Purchase
+f2846679-d3f3-4999-8bdd-f30fc72bfd07,18494,74,119,Laptop,Tech,56,Microsoft,Tech,2024-06-29,10:37:35,5,4290.75,Discover,Refund
+b91c583c-4eb1-4ee4-8726-8e9180af3105,49006,49,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-06-01,08:47:23,5,1737,Discover,Refund
+cbe6876a-2c4a-43d9-b6b0-0878014d1b0e,40024,37,159,Toiletries,Retail,3,Walmart,Retail,2023-12-23,18:45:29,4,4119.24,Mastercard,Purchase
+5aef6c46-b04c-4380-aca9-047f7c6bc590,34803,21,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-08-21,23:44:10,1,511.6,Visa,Refund
+b7169152-8a9b-4dd6-858d-2f3a8709a89a,23657,42,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-06-17,17:18:05,10,3474,Mastercard,Purchase
+93ca68fb-0c86-4806-8d94-4f813def7ef9,32710,46,160,Shoes,Fashion,34,Nike,Fashion,2024-01-29,12:03:36,8,5332.96,Visa,Refund
+643f2613-2b9f-47ca-8256-4c16c6ee097c,33724,68,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2023-11-26,23:14:31,7,9667.07,Mastercard,Purchase
+62917b36-4fde-4dfc-a012-b56fd550c6cf,48186,52,144,Vegetables,Produce,33,Whole Foods,Produce,2024-05-16,23:03:45,9,3126.6,American Express,Purchase
+72fb5a98-7ef9-4abc-bd20-cd4cae1589b4,49528,43,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2023-12-21,13:20:58,5,4885.5,Discover,Purchase
+bf7c5a9e-318f-4b9a-97ce-6a5c966ff250,26383,82,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-04-04,18:10:17,7,2431.8,American Express,Purchase
+ba3f828d-2e51-4111-bf41-3643b109b64a,28655,57,102,Phone,Tech,55,Apple,Tech,2023-11-23,15:40:15,10,8906.9,Discover,Purchase
+8d26e0bd-aae6-4526-bdc6-7616816d0227,17836,53,160,Shoes,Fashion,34,Nike,Fashion,2024-05-10,13:31:19,4,2666.48,American Express,Purchase
+f04cc014-99ff-4ffc-bfee-970438c23197,33207,70,199,Coffee,Food,35,McDonald's,Food,2024-06-06,03:24:53,9,6039.45,Mastercard,Purchase
+febd3580-1b5f-46de-8682-e573936fa256,46880,60,144,Vegetables,Produce,64,Trader Joe's,Produce,2023-10-29,16:51:39,4,1389.6,Discover,Refund
+ec3f41ab-595a-455a-b596-8184ff9d0349,25103,41,159,Toiletries,Retail,13,Amazon,Retail,2024-07-22,09:16:57,8,8238.48,Mastercard,Refund
+0b9a47ff-94d8-466c-b0a0-60be0924ce76,45117,29,160,Shoes,Fashion,42,Adidas,Fashion,2024-04-08,02:05:23,8,5332.96,American Express,Purchase
+d5d426f1-0204-49cb-a7c6-d32d1fc60e1c,7326,68,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-07-19,02:23:00,7,6839.7,American Express,Purchase
+a2a3481e-1a48-42b1-8b40-52de1e371362,18882,19,199,Coffee,Food,40,Starbucks,Food,2024-02-27,10:07:28,2,1342.1,Mastercard,Purchase
+53c5c2f3-8812-487b-aa6e-eb93d4a81bb1,42635,37,102,Phone,Tech,56,Microsoft,Tech,2023-12-08,09:00:55,3,2672.07,Visa,Purchase
+f2f88fdb-6bc5-4dbd-905e-c6891b054756,35029,64,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-08-12,16:45:16,9,12041.55,Mastercard,Purchase
+TX1730954092.21205571,29571,90,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,4,4944.8,Mastercard,Purchase
+TX1730954092.21205610,18680,44,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,7,6839.7,American Express,Purchase
+TX1730954092.21205845,48418,62,159,Toiletries,Retail,13,Amazon,Retail,2024-11-06,23:34:52,4,4119.24,Mastercard,Purchase
+TX1730954092.21205538,9345,81,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,6,4026.3,Visa,Refund
+TX1730954092.21205152,36410,68,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,6,8027.7,Mastercard,Purchase
+TX1730954092.21205248,40324,39,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,4,5524.04,Mastercard,Purchase
+TX1730954092.21205219,7452,39,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,1,674.63,Mastercard,Purchase
+TX1730954092.21205599,5125,52,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,4,5524.04,Mastercard,Purchase
+TX1730954092.21205408,26435,41,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,4,4944.8,Mastercard,Purchase
+TX1730954092.21205732,34447,36,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,3,2574.45,Discover,Refund
+TX1730954092.21205316,9429,53,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,7,6234.83,Discover,Purchase
+TX1730954092.21205639,17043,30,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,4,3432.6,Visa,Purchase
+TX1730954092.21205957,10384,20,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,6,8027.7,Visa,Purchase
+TX1730954092.212053,33604,73,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,1,890.69,Visa,Purchase
+TX1730954092.21205755,43671,67,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,4,2666.48,Discover,Purchase
+TX1730954092.21205761,32708,76,160,Shoes,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,7,4666.34,Discover,Refund
+TX1730954092.21205341,20330,61,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,5,6689.75,Visa,Purchase
+TX1730954092.21205879,9693,25,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,3,2013.15,Visa,Refund
+TX1730954092.21205440,40257,56,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,7,8653.4,Mastercard,Refund
+TX1730954092.2120585,26522,38,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,2,1333.24,Mastercard,Purchase
+TX1730954092.21205607,15669,49,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,4,2666.48,Visa,Purchase
+TX1730954092.21205502,16115,39,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,6,4047.78,Discover,Purchase
+TX1730954092.21205301,6332,87,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,1,511.6,Discover,Purchase
+TX1730954092.21205953,23323,27,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,6,7417.2,Mastercard,Refund
+TX1730954092.21205898,25849,86,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,1,511.6,American Express,Purchase
+TX1730954092.21205644,16517,31,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-11-06,23:34:52,4,2046.4,Discover,Purchase
+TX1730954092.21205133,49482,71,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,5,6181,Discover,Purchase
+TX1730954092.21205817,6771,23,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,6,7417.2,Mastercard,Refund
+TX1730954092.21205964,41630,42,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,6,4026.3,American Express,Purchase
+TX1730954092.2120569,9525,65,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,5,4290.75,Visa,Refund
+TX1730954092.21205589,26108,24,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-11-06,23:34:52,7,3581.2,Visa,Purchase
+TX1730954092.21205135,46875,51,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,1,1236.2,American Express,Purchase
+TX1730954092.21205239,11198,76,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,3,3708.6,Mastercard,Purchase
+TX1730954092.21205691,40310,52,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,2,1333.24,American Express,Refund
+TX1730954092.21205706,40379,29,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,2,1954.2,Mastercard,Purchase
+TX1730954092.21205203,12768,55,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,1,890.69,American Express,Purchase
+TX1730954092.21205887,19595,73,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,7,6839.7,Mastercard,Purchase
+TX1730954092.21205170,27053,72,189,Jacket,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,6,4047.78,Mastercard,Purchase
+TX1730954092.21205431,11396,89,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,5,4885.5,Mastercard,Refund
+TX1730954092.21205147,14288,53,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,2,1333.24,American Express,Purchase
+TX1730954092.21205903,27333,73,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,3,2013.15,Mastercard,Purchase
+TX1730954092.21205968,16142,51,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,6,5148.9,Discover,Purchase
+TX1730954092.21205132,38720,22,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,3,3708.6,Mastercard,Purchase
+TX1730954092.21205978,22570,86,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,1,1236.2,Mastercard,Refund
+TX1730954092.21205418,7586,72,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,6,4047.78,Mastercard,Purchase
+TX1730954092.21205250,32389,64,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,7,9365.65,Mastercard,Purchase
+TX1730954092.21205159,37980,42,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,5,4885.5,American Express,Purchase
+TX1730954092.21205747,22571,36,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,3,3708.6,Mastercard,Refund
+TX1730954092.21205826,11997,63,160,Shoes,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,1,666.62,American Express,Purchase
+TX1730954092.21205858,2022,74,159,Toiletries,Retail,13,Amazon,Retail,2024-11-06,23:34:52,7,7208.67,Discover,Purchase
+TX1730954092.21205292,24380,41,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,1,890.69,Visa,Purchase
+TX1730954092.21205586,29798,41,199,Coffee,Food,40,Starbucks,Food,2024-11-06,23:34:52,4,2684.2,American Express,Purchase
+TX1730954092.21205678,36468,73,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,2,2762.02,American Express,Purchase
+TX1730954092.21205374,21771,43,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,6,5148.9,American Express,Purchase
+TX1730954092.21205721,9405,74,199,Coffee,Food,40,Starbucks,Food,2024-11-06,23:34:52,4,2684.2,Discover,Purchase
+TX1730954092.21205207,23639,44,102,Phone,Tech,55,Apple,Tech,2024-11-06,23:34:52,4,3562.76,Discover,Purchase
+TX1730954092.2120556,49387,38,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,4,5524.04,Mastercard,Purchase
+TX1730954092.21205293,6854,71,144,Vegetables,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,3,1042.2,Discover,Refund
+TX1730954092.2120572,44116,34,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,1,1236.2,Mastercard,Purchase
+TX1730954092.21205634,10676,18,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,3,2574.45,Mastercard,Purchase
+TX1730954092.21205465,42310,60,169,Fruits,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,7,8653.4,Visa,Purchase
+TX1730954092.21205377,36582,51,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,7,6839.7,Mastercard,Purchase
+TX1730954092.21205662,18641,55,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,5,6689.75,Discover,Refund
+TX1730954092.21205122,23317,65,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,2,1954.2,American Express,Purchase
+TX1730954092.21205245,21203,47,159,Toiletries,Retail,13,Amazon,Retail,2024-11-06,23:34:52,4,4119.24,American Express,Purchase
+TX1730954092.21205124,12266,43,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,1,511.6,Visa,Refund
+TX1730954092.21205802,1677,89,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,3,1042.2,Mastercard,Refund
+TX1730954092.21205815,47662,19,144,Vegetables,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,2,694.8,American Express,Purchase
+TX1730954092.21205641,24594,83,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,6,8286.06,American Express,Refund
+TX1730954092.21205304,22918,47,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,7,6839.7,Mastercard,Refund
+TX1730954092.21205406,38992,32,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-11-06,23:34:52,7,3581.2,Visa,Purchase
+TX1730954092.21205438,1319,21,102,Phone,Tech,55,Apple,Tech,2024-11-06,23:34:52,4,3562.76,Visa,Purchase
+TX1730954092.21205296,29725,28,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,7,9667.07,Visa,Purchase
+TX1730954092.21205516,44474,61,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,2,2675.9,Discover,Purchase
+TX1730954092.21205870,18793,39,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,6,5148.9,Discover,Purchase
+TX1730954092.21205302,31678,38,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,7,2431.8,Mastercard,Purchase
+TX1730954092.2120595,11258,71,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,2,1954.2,Mastercard,Purchase
+TX1730954092.2120550,6536,63,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,2,1342.1,American Express,Purchase
+TX1730954092.21205252,37599,29,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,3,2672.07,Discover,Purchase
+TX1730954092.21205554,12629,50,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,2,1333.24,Visa,Purchase
+TX1730954092.21205368,34800,84,159,Toiletries,Retail,3,Walmart,Retail,2024-11-06,23:34:52,3,3089.43,Visa,Purchase
+TX1730954092.21205621,12166,41,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,5,4290.75,Mastercard,Purchase
+TX1730954092.21205568,18279,56,199,Coffee,Food,40,Starbucks,Food,2024-11-06,23:34:52,4,2684.2,Visa,Purchase
+TX1730954092.21205461,31108,59,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,2,1349.26,Mastercard,Purchase
+TX1730954092.21205328,28305,71,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,3,2023.89,American Express,Purchase
+TX1730954092.21205458,42316,68,160,Shoes,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,3,1999.86,Mastercard,Purchase
+TX1730954092.21205270,24335,53,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,6,5148.9,Discover,Purchase
+TX1730954092.21205462,30606,78,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,5,4290.75,Mastercard,Purchase
+TX1730954092.2120549,10837,28,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,5,4885.5,Visa,Purchase
+TX1730954092.2120543,45831,75,199,Coffee,Food,40,Starbucks,Food,2024-11-06,23:34:52,6,4026.3,Mastercard,Refund
+TX1730954092.2120589,12430,84,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,5,1737,American Express,Purchase
+TX1730954092.21205668,25551,53,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,2,1342.1,Discover,Refund
+TX1730954092.21205442,8979,23,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,1,674.63,Mastercard,Purchase
+TX1730954092.21205875,4128,65,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,6,2084.4,American Express,Purchase
+TX1730954092.21205439,23139,70,144,Vegetables,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,3,1042.2,Discover,Purchase
+TX1730954092.21205546,37053,53,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,7,9365.65,Discover,Purchase
+TX1730954092.21205514,11854,74,154,Streaming,Entertainment,61,Netflix,Entertainment,2024-11-06,23:34:52,3,1534.8,American Express,Purchase
+TX1730954092.21205414,2195,20,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,7,6839.7,Visa,Purchase
+TX1730954092.21205332,26051,19,160,Shoes,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,3,1999.86,Mastercard,Purchase
+TX1730954092.21205190,19833,20,149,Prescription Medication,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,4,5351.8,Mastercard,Purchase
+TX1730954092.21205877,49848,82,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,4,3432.6,Discover,Refund
+TX1730954092.21205720,44419,84,199,Coffee,Food,40,Starbucks,Food,2024-11-06,23:34:52,6,4026.3,American Express,Purchase
+TX1730954092.21205303,32137,70,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,2,2762.02,Discover,Purchase
+TX1730954092.21205846,36716,66,189,Jacket,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,3,2023.89,Mastercard,Refund
+TX1730954092.2120523,26762,45,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,7,6007.05,Visa,Purchase
+TX1730954092.21205208,31119,81,119,Laptop,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,7,6007.05,Visa,Purchase
+TX1730954092.21205795,32646,49,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,1,890.69,American Express,Purchase
+TX1730954092.2120580,14346,29,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,3,1534.8,Discover,Purchase
+TX1730954092.21205708,7094,41,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,6,3069.6,Mastercard,Purchase
+TX1730954092.21205860,34706,79,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,2,1716.3,Visa,Purchase
+TX1730954092.21205561,13167,50,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,5,4885.5,Mastercard,Purchase
+TX1730954092.21205640,36716,66,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,3,2931.3,Mastercard,Purchase
+TX1730954092.2120557,22095,59,154,Streaming,Entertainment,65,Spotify,Entertainment,2024-11-06,23:34:52,6,3069.6,Visa,Purchase
+TX1730954092.21205254,46615,37,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,4,4944.8,Discover,Refund
+TX1730954092.21205608,10071,85,159,Toiletries,Retail,13,Amazon,Retail,2024-11-06,23:34:52,1,1029.81,American Express,Purchase
+TX1730954092.21205758,37556,55,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,2,1342.1,Mastercard,Purchase
+TX1730954092.21205746,36238,64,149,Prescription Medication,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,6,8027.7,Visa,Purchase
+TX1730954092.21205615,48542,57,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,5,4290.75,Visa,Purchase
+TX1730954092.21205979,34585,81,159,Toiletries,Retail,13,Amazon,Retail,2024-11-06,23:34:52,2,2059.62,Mastercard,Refund
+TX1730954092.21205913,39580,56,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,5,6181,Visa,Purchase
+TX1730954092.21205864,17759,86,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,1,347.4,Mastercard,Purchase
+TX1730954092.21205291,38137,24,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,7,2431.8,Mastercard,Refund
+TX1730954092.2120532,33006,48,173,Multivitamins,Pharmacy,24,Walgreens,Pharmacy,2024-11-06,23:34:52,2,2762.02,Visa,Refund
+TX1730954092.21205881,37360,72,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,5,6905.05,American Express,Purchase
+TX1730954092.21205945,31718,18,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,2,694.8,American Express,Purchase
+TX1730954092.21205120,7049,41,144,Vegetables,Produce,33,Whole Foods,Produce,2024-11-06,23:34:52,4,1389.6,Mastercard,Refund
+TX1730954092.21205564,27333,73,169,Fruits,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,1,1236.2,American Express,Purchase
+TX1730954092.21205338,25543,51,143,Disinfectant Wipes,Retail,3,Walmart,Retail,2024-11-06,23:34:52,4,3908.4,Visa,Refund
+TX1730954092.21205696,48422,29,189,Jacket,Fashion,42,Adidas,Fashion,2024-11-06,23:34:52,7,4722.41,Visa,Purchase
+TX1730954092.21205383,47856,57,102,Phone,Tech,56,Microsoft,Tech,2024-11-06,23:34:52,3,2672.07,American Express,Purchase
+TX1730954092.21205100,41019,83,173,Multivitamins,Pharmacy,16,CVS,Pharmacy,2024-11-06,23:34:52,5,6905.05,Visa,Purchase
+TX1730954092.21205372,32533,61,189,Jacket,Fashion,34,Nike,Fashion,2024-11-06,23:34:52,7,4722.41,Visa,Purchase
+TX1730954092.21205498,49744,83,144,Vegetables,Produce,64,Trader Joe's,Produce,2024-11-06,23:34:52,2,694.8,Mastercard,Purchase
+TX1730954092.21205757,29907,80,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,2,1342.1,American Express,Refund
+TX1730954092.21205220,30536,67,119,Laptop,Tech,55,Apple,Tech,2024-11-06,23:34:52,7,6007.05,Visa,Purchase
+TX1730954092.21205699,2125,55,143,Disinfectant Wipes,Retail,13,Amazon,Retail,2024-11-06,23:34:52,1,977.1,Mastercard,Purchase
+TX1730954092.21205350,4485,78,199,Coffee,Food,35,McDonald's,Food,2024-11-06,23:34:52,7,4697.35,Discover,Purchase
