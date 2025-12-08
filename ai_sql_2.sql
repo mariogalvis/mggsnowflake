@@ -89,6 +89,32 @@ SELECT
 FROM DIRECTORY(@BD_EMPRESA.GOLD.MGG_FILES)
 WHERE relative_path LIKE 'contratos/%';
 
+-- De Audio a Texto desde SQL
+SELECT AI_TRANSCRIBE(TO_FILE('@mgg_files', '081725_1349.mp3'),{'timestamp_granularity': 'speaker'});
+
+-- Analítica de Sentimiento desde SQL 
+WITH transcriptions AS ( SELECT TO_VARCHAR(AI_TRANSCRIBE(TO_FILE('@mgg_files','081725_1349.mp3'))) AS transcribed_call )
+SELECT AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución', 'Tiempo de Espera']) AS call_sentiment FROM transcriptions;
+
+
+SELECT AI_EXTRACT(
+  file => TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES','telecom.jpg'),
+  responseFormat => [
+    ['casco', '¿La persona lleva casco de seguridad correctamente puesto?'],
+    ['chaleco', '¿Tiene chaleco reflectivo visible?'],
+    ['arnes', '¿Se observa arnés de seguridad en uso?'],
+    ['guantes', '¿Está usando guantes de protección?'],
+    ['gafas', '¿Usa gafas o protección ocular?'],
+    ['postura_segura', '¿La persona mantiene una postura de trabajo segura?'],
+    ['altura', '¿Está realizando trabajo en altura?'],
+    ['linea_vida', '¿Se observa línea de vida o punto de anclaje seguro?'],
+    ['zona_peligro', '¿Se aprecian señales o cintas que delimiten la zona de trabajo?'],
+    ['trafico', '¿Hay vehículos o tránsito cerca de la zona de trabajo?'],
+    ['iluminacion', '¿La iluminación parece adecuada para el trabajo que se realiza?'],
+    ['personas', '¿Cuántas personas aparecen en la imagen?'],
+    ['riesgo_visible', '¿Se observa alguna condición de riesgo evidente en la escena?']
+  ]
+);
 
 -- Análisis de imagen para reporte de accidente vehicular
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
@@ -116,18 +142,6 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE(
     'Clasifique el punto de referencia identificado en esta imagen. Responda en JSON solo con el nombre del punto de referencia',
     TO_FILE('@mgg_files', 'lugarb.jpg')
 );
-
--- De Audio a Texto desde SQL
-SELECT AI_TRANSCRIBE(TO_FILE('@mgg_files', '081725_1349.mp3'),{'timestamp_granularity': 'speaker'});
-
--- Analítica de Sentimiento desde SQL 
-WITH transcriptions AS
-  ( SELECT TO_VARCHAR(AI_TRANSCRIBE(TO_FILE('@mgg_files',
-      '081725_1349.mp3'))) AS transcribed_call )
-SELECT
-  AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución',
-      'Tiempo de Espera']) AS call_sentiment
-FROM transcriptions;
 
 -- Structure Outputs 
 SELECT AI_COMPLETE(
