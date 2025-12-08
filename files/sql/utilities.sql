@@ -362,6 +362,39 @@ COPY INTO CUSTOMER_PURCHASE_SUMMARY
   FROM @MGG_DATA_PURCHASES
   FILE_FORMAT = csvformat;
 
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
+
+CREATE OR REPLACE STAGE call_transcripts_data_stage
+  DIRECTORY  = (ENABLE = TRUE)
+  ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+
+COPY FILES INTO @call_transcripts_data_stage FROM @BD_EMPRESA.GOLD.MGG_FILES/csv/CALL_TRANSCRIPT_ES.csv;
+
+ALTER STAGE call_transcripts_data_stage REFRESH;
+
+CREATE or REPLACE file format csvformat2
+  SKIP_HEADER = 1
+  FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+  type = 'CSV';
+
+CREATE or REPLACE table CALL_TRANSCRIPTS ( 
+  date_created date,
+  language varchar(60),
+  country varchar(60),
+  product varchar(60),
+  category varchar(60),
+  damage_type varchar(90),
+  transcript varchar
+);
+
+COPY into CALL_TRANSCRIPTS
+  from @call_transcripts_data_stage
+  FILE_FORMAT = csvformat2;
+
+-- Select * from CALL_TRANSCRIPTS limit 5;
+
 
 CREATE OR REPLACE WAREHOUSE VW_REPORTING
   WITH
