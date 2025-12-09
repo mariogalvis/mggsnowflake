@@ -1227,3 +1227,6 @@ FROM SPECIFICATION $$
       "name": "WEB_SCRAPE(VARCHAR)",
       "type": "function"
     }
+  }
+}
+$$;
