@@ -1,20 +1,9 @@
-
-
-
-    -- ========================================================================
-    -- Snowflake AI Demo - Complete Setup Script
-    -- This script creates the database, schema, tables, and loads all data
-    -- Repository: https://github.com/NickAkincilar/Snowflake_AI_DEMO.git
-    -- ========================================================================
-
-    
-
     -- Switch to accountadmin role to create warehouse
     USE ROLE accountadmin;
 
     -- Enable Snowflake Intelligence by creating the Config DB & Schema
-    -- CREATE DATABASE IF NOT EXISTS snowflake_intelligence;
-    -- CREATE SCHEMA IF NOT EXISTS snowflake_intelligence.agents;
+    CREATE OR REPLACE DATABASE snowflake_intelligence;
+    CREATE OR REPLACE SCHEMA snowflake_intelligence.agents;
     
     -- Allow anyone to see the agents in this schema
     GRANT USAGE ON DATABASE snowflake_intelligence TO ROLE PUBLIC;
@@ -928,11 +917,11 @@ GRANT USAGE ON NETWORK RULE snowflake_intelligence_webaccessrule TO ROLE account
 
 USE SCHEMA SF_AI_DEMO.DEMO_SCHEMA;
 
-CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION Snowflake_intelligence_ExternalAccess_Integration
+/*CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION Snowflake_intelligence_ExternalAccess_Integration
 ALLOWED_NETWORK_RULES = (Snowflake_intelligence_WebAccessRule)
-ENABLED = true;
+ENABLED = true;*/
 
-CREATE NOTIFICATION INTEGRATION ai_email_int
+CREATE OR REPLACE NOTIFICATION INTEGRATION ai_email_int
   TYPE=EMAIL
   ENABLED=TRUE;
 
@@ -940,7 +929,7 @@ GRANT USAGE ON DATABASE snowflake_intelligence TO ROLE SF_Intelligence_Demo;
 GRANT USAGE ON SCHEMA snowflake_intelligence.agents TO ROLE SF_Intelligence_Demo;
 GRANT CREATE AGENT ON SCHEMA snowflake_intelligence.agents TO ROLE SF_Intelligence_Demo;
 
-GRANT USAGE ON INTEGRATION Snowflake_intelligence_ExternalAccess_Integration TO ROLE SF_Intelligence_Demo;
+--GRANT USAGE ON INTEGRATION Snowflake_intelligence_ExternalAccess_Integration TO ROLE SF_Intelligence_Demo;
 
 GRANT USAGE ON INTEGRATION AI_EMAIL_INT TO ROLE SF_INTELLIGENCE_DEMO;
 
@@ -1007,7 +996,7 @@ RETURNS STRING
 LANGUAGE PYTHON
 RUNTIME_VERSION = 3.11
 HANDLER = 'get_page'
-EXTERNAL_ACCESS_INTEGRATIONS = (Snowflake_intelligence_ExternalAccess_Integration)
+--EXTERNAL_ACCESS_INTEGRATIONS = (Snowflake_intelligence_ExternalAccess_Integration)
 PACKAGES = ('requests', 'beautifulsoup4')
 --SECRETS = ('cred' = oauth_token )
 AS
@@ -1238,6 +1227,3 @@ FROM SPECIFICATION $$
       "name": "WEB_SCRAPE(VARCHAR)",
       "type": "function"
     }
-  }
-}
-$$;
