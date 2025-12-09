@@ -400,6 +400,159 @@ COPY into CALL_TRANSCRIPTS
 
 -- Select * from CALL_TRANSCRIPTS limit 5;
 
+CREATE OR REPLACE DATABASE advanced_analytics;
+USE ADVANCED_ANALYTICS.PUBLIC;
+CREATE OR REPLACE FILE FORMAT csv_format_nocompression TYPE = csv
+FIELD_OPTIONALLY_ENCLOSED_BY = '"' FIELD_DELIMITER = ',' skip_header = 1;
+
+CREATE OR REPLACE STAGE AA_STAGE URL = 's3://sfquickstarts/hol_geo_spatial_ml_using_snowflake_cortex/';
+
+CREATE OR REPLACE TABLE ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS AS
+SELECT  $1::NUMBER as order_id,
+        $2::VARCHAR as customer_id,
+        TO_GEOGRAPHY($3) as delivery_location,
+        $4::NUMBER as delivery_postcode,
+        $5::FLOAT as delivery_distance_miles,
+        $6::VARCHAR as restaurant_food_type,
+        TO_GEOGRAPHY($7) as restaurant_location,
+        $8::NUMBER as restaurant_postcode,
+        $9::VARCHAR as restaurant_id,
+        $10::VARCHAR as review
+FROM @ADVANCED_ANALYTICS.PUBLIC.AA_STAGE/food_delivery_reviews.csv (file_format => 'csv_format_nocompression');
+
+CREATE OR REPLACE TABLE ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT_TEST as
+SELECT TOP 10
+    order_id
+    , customer_id
+    , delivery_location
+    , delivery_postcode
+    , delivery_distance_miles
+    , restaurant_food_type
+    , restaurant_location
+    , restaurant_postcode
+    , restaurant_id
+    , review
+    , snowflake.cortex.complete('mixtral-8x7b'
+        , concat('You are a helpful data assistant and your job is to return a JSON formatted response that classifies a customer review (represented in the <review> section) as one of the following seven sentiment categories (represented in the <categories> section). Return your classification exclusively in the JSON format: {classification: <<value>>}, where <<value>> is one of the 7 classification categories in the section <categories>. 
+        
+        <categories>
+        Very Positive
+        Positive
+        Neutral
+        Mixed 
+        Negative 
+        Very Negative
+        Other
+        </categories>
+        
+        "Other" should be used for the classification if you are unsure of what to put. No other classifications apart from these seven in the <categories> section should be used.
+        
+        Here are some examples: 
+            1. If review is: "This place is awesome! The food tastes great, delivery was super fast, and the cost was cheap. Amazing!", then the output should only be {"Classification": "Very Positive"}
+            2. If review is: "Tried this new place and it was a good experience. Good food delivered fast.", then the output should only be {"Classification": "Positive"}
+            3. If review is: "Got food from this new joint. It was OK. Nothing special but nothing to complain about either", then the output should only be {"Classification": "Neural"}
+            4. If review is: "The pizza place we ordered from had the food delivered real quick and it tasted good. It just was pretty expensive for what we got.", then the output should only be {"Classification": "Mixed"}
+            5. If review is: "The hamburgers we ordered took a very long time and when they arrived they were just OK.", then the output should only be {"Classification": "Negative"}
+            6. If review is: "This food delivery experience was super bad. Overpriced, super slow, and the food was not that great. Disappointed.", then the output should only be {"Classification": "Very Negative"}
+            7. If review is: "An experience like none other", then the output should be "{"Classification": Other"}
+        
+         It is very important that you do not return anything but the JSON formatted response. 
+            
+        <review>', review, '</review>
+        JSON formatted Classification Response: '
+                )
+    ) as sentiment_assessment   
+    , snowflake.cortex.complete(
+        'mixtral-8x7b'
+        , concat('You are a helpful data assistant. Your job is to classify customer input <review>. If you are unsure, return null. For a given category classify the sentiment for that category as: Very Positive, Positive, Mixed, Neutral, Negative, Very Negative. Respond exclusively in JSON format.
+
+        {
+        food_cost:
+        food_quality:
+        food_delivery_time:
+    
+        }
+      '  
+, review 
+, 'Return results'
+        )) as sentiment_categories
+FROM 
+    ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS;
+
+CREATE OR REPLACE TABLE ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT (
+	ORDER_ID NUMBER(38,0),
+	CUSTOMER_ID VARCHAR(16777216),
+	DELIVERY_LOCATION GEOGRAPHY,
+	DELIVERY_POSTCODE NUMBER(38,0),
+	DELIVERY_DISTANCE_MILES FLOAT,
+	RESTAURANT_FOOD_TYPE VARCHAR(16777216),
+	RESTAURANT_LOCATION GEOGRAPHY,
+	RESTAURANT_POSTCODE NUMBER(38,0),
+	RESTAURANT_ID VARCHAR(16777216),
+	REVIEW VARCHAR(16777216),
+	SENTIMENT_ASSESSMENT VARCHAR(16777216),
+	SENTIMENT_CATEGORIES VARCHAR(16777216)
+);
+
+COPY INTO ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT
+FROM @ADVANCED_ANALYTICS.PUBLIC.AA_STAGE/food_delivery_reviews.csv
+FILE_FORMAT = (FORMAT_NAME = csv_format_nocompression);
+
+CREATE OR REPLACE TABLE ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT_ANALYSIS AS
+SELECT * exclude (food_cost, food_quality, food_delivery_time, sentiment) ,
+         CASE
+             WHEN sentiment = 'very positive' THEN 5
+             WHEN sentiment = 'positive' THEN 4
+             WHEN sentiment = 'neutral'
+                  OR sentiment = 'mixed' THEN 3
+             WHEN sentiment = 'negative' THEN 2
+             WHEN sentiment = 'very negative' THEN 1
+             ELSE NULL
+         END sentiment_score ,
+         CASE
+             WHEN food_cost = 'very positive' THEN 5
+             WHEN food_cost = 'positive' THEN 4
+             WHEN food_cost = 'neutral'
+                  OR food_cost = 'mixed' THEN 3
+             WHEN food_cost = 'negative' THEN 2
+             WHEN food_cost = 'very negative' THEN 1
+             ELSE NULL
+         END cost_score ,
+         CASE
+             WHEN food_quality = 'very positive' THEN 5
+             WHEN food_quality = 'positive' THEN 4
+             WHEN food_quality = 'neutral'
+                  OR food_quality = 'mixed' THEN 3
+             WHEN food_quality = 'negative' THEN 2
+             WHEN food_quality = 'very negative' THEN 1
+             ELSE NULL
+         END food_quality_score ,
+         CASE
+             WHEN food_delivery_time = 'very positive' THEN 5
+             WHEN food_delivery_time = 'positive' THEN 4
+             WHEN food_delivery_time = 'neutral'
+                  OR food_delivery_time = 'mixed' THEN 3
+             WHEN food_delivery_time = 'negative' THEN 2
+             WHEN food_delivery_time = 'very negative' THEN 1
+             ELSE NULL
+         END delivery_time_score
+FROM
+  (SELECT order_id ,
+          customer_id ,
+          delivery_location ,
+          delivery_postcode ,
+          delivery_distance_miles ,
+          restaurant_food_type ,
+          restaurant_location ,
+          restaurant_postcode ,
+          restaurant_id ,
+          review ,
+          try_parse_json(lower(sentiment_assessment)):classification::varchar AS sentiment ,
+          try_parse_json(lower(sentiment_categories)):food_cost::varchar AS food_cost ,
+          try_parse_json(lower(sentiment_categories)):food_quality::varchar AS food_quality ,
+          try_parse_json(lower(sentiment_categories)):food_delivery_time::varchar AS food_delivery_time
+   FROM ADVANCED_ANALYTICS.PUBLIC.ORDERS_REVIEWS_SENTIMENT);
+
 
 CREATE OR REPLACE WAREHOUSE VW_REPORTING
   WITH
