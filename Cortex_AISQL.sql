@@ -1,13 +1,16 @@
 select snowflake.cortex.complete('openai-gpt-5','Que es ABC en Colombia?');
 
-USE DATABASE BD_AI_CORTEX;
-USE SCHEMA PUBLIC;
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
 
-SET prompt = '### De la transcripción, genera un formato JSON con el resumen traducido a español menos de 200 palabras, nombre del producto, defecto, sentimiento del cliente sólo decir malo, neutral, positivo y la solución al cliente todo en español ###';
+Select * from CALL_TRANSCRIPTS limit 5;
 
-SELECT snowflake.cortex.complete('llama3-70b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts WHERE language = 'English' LIMIT 1;
+SET prompt = '### De la transcripción, genera un formato JSON con el resumen traducido a español menos de 100 palabras, nombre del producto, defecto, sentimiento del cliente sólo decir malo, neutral, positivo y la solución al cliente todo en español ###';
 
-SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts  WHERE language = 'English' LIMIT 1;
+SELECT snowflake.cortex.complete('llama3-70b', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts LIMIT 2;
+
+SELECT snowflake.cortex.complete('claude-4-sonnet', CONCAT('[INST]', $prompt, transcript, '[/INST]')) AS summary FROM call_transcripts LIMIT 2;
 
 
 
@@ -26,21 +29,15 @@ SELECT SNOWFLAKE.CORTEX.ENTITY_SENTIMENT(
   ['calidad_comida', 'sabor_comida', 'tiempo_espera', 'precio_comida']
 ) AS sentimiento_respuesta;
 
--- Análisis de Imágenes desde SQL
-
-USE WAREHOUSE VW_GENAI;
-USE DATABASE BD_EMPRESA;
-USE SCHEMA GOLD;
-
 -- Extracción de datos desde una imagen de cédula
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
     'pixtral-large',
     'Dame todos los datos de esta cédula, en este orden: número de cédula, nombre, apellido, nacionalidad, fecha de nacimiento, es mayor de edad? (si es mayor de 18 años sólo responde SI, o NO), Lugar de nacimiento, fecha de expedición, y si la cédula está vigente',
-    TO_FILE('@myimages', 'cedula.jpg')
+    TO_FILE('@mgg_files', 'cedula.jpg')
 );
 
 SELECT AI_EXTRACT(
-  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','358849121-Ejemplo-de-Facturas.pdf'),
+  file => TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES','358849121-Ejemplo-de-Facturas.pdf'),
   responseFormat => [['name', 'Cuál es el nombre del cliente?'], 
                      ['total', 'Cuál es el total de la factura?'],
                      ['numero', 'Cuál es el número de la factura?'],
@@ -48,7 +45,7 @@ SELECT AI_EXTRACT(
 );
 
 SELECT AI_EXTRACT(
-  file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES','SARLAFT.pdf'),
+  file => TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES','SARLAFT.pdf'),
   responseFormat => [['name', 'Cuál es el nombre?'], 
                      ['tipo', 'Es vinculación?'],
                      ['id', 'Cuál es el número de identificación?'],
@@ -67,7 +64,7 @@ SELECT
     RESULT:response:ingresos_mensuales::string  AS INGRESOS_MENSUALES
 FROM (
     SELECT AI_EXTRACT(
-        file => TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', 'SARLAFT.pdf'),
+        file => TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES', 'SARLAFT.pdf'),
         responseFormat => [
             ['name', 'Cuál es el nombre?'], 
             ['tipo', 'Es vinculación?'],
@@ -82,16 +79,42 @@ FROM (
 SELECT 
   relative_path,
   AI_EXTRACT(
-    TO_FILE('@BD_EMPRESA.GOLD.MYIMAGES', relative_path),
+    TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES', relative_path),
     [ 'Como se llama el propietario?',
     'Cuál es la fecha de inicio de contrato? formato dd/mm/aaaa',
     'Cuál es la duración de meses del contrato? formato número',
     'Tiene cláusula de terminación anticipada? SI o NO',
     'Cuál es el canon de arrendamiento? sólo en formato número, sin decimales']
   ) AS extracted_info
-FROM DIRECTORY(@BD_EMPRESA.GOLD.MYIMAGES)
+FROM DIRECTORY(@BD_EMPRESA.GOLD.MGG_FILES)
 WHERE relative_path LIKE 'contratos/%';
 
+-- De Audio a Texto desde SQL
+SELECT AI_TRANSCRIBE(TO_FILE('@mgg_files', '081725_1349.mp3'),{'timestamp_granularity': 'speaker'});
+
+-- Analítica de Sentimiento desde SQL 
+WITH transcriptions AS ( SELECT TO_VARCHAR(AI_TRANSCRIBE(TO_FILE('@mgg_files','081725_1349.mp3'))) AS transcribed_call )
+SELECT AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución', 'Tiempo de Espera']) AS call_sentiment FROM transcriptions;
+
+
+SELECT AI_EXTRACT(
+  file => TO_FILE('@BD_EMPRESA.GOLD.MGG_FILES','telecom.jpg'),
+  responseFormat => [
+    ['casco', '¿La persona lleva casco de seguridad correctamente puesto?'],
+    ['chaleco', '¿Tiene chaleco reflectivo visible?'],
+    ['arnes', '¿Se observa arnés de seguridad en uso?'],
+    ['guantes', '¿Está usando guantes de protección?'],
+    ['gafas', '¿Usa gafas o protección ocular?'],
+    ['postura_segura', '¿La persona mantiene una postura de trabajo segura?'],
+    ['altura', '¿Está realizando trabajo en altura?'],
+    ['linea_vida', '¿Se observa línea de vida o punto de anclaje seguro?'],
+    ['zona_peligro', '¿Se aprecian señales o cintas que delimiten la zona de trabajo?'],
+    ['trafico', '¿Hay vehículos o tránsito cerca de la zona de trabajo?'],
+    ['iluminacion', '¿La iluminación parece adecuada para el trabajo que se realiza?'],
+    ['personas', '¿Cuántas personas aparecen en la imagen?'],
+    ['riesgo_visible', '¿Se observa alguna condición de riesgo evidente en la escena?']
+  ]
+);
 
 -- Análisis de imagen para reporte de accidente vehicular
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
@@ -111,29 +134,14 @@ SELECT SNOWFLAKE.CORTEX.COMPLETE(
     12. ¿Cuál es el número de la placa del vehículo?
     13. ¿Dame el nombre de la ciudad que aparece en la placa del vehículo? 
     Ponlo en formato JSON, solo dos columnas, con el número de pregunta y respuesta',
-    TO_FILE('@myimages', 'choque3.png')
+    TO_FILE('@mgg_files', 'choque3.png')
 );
 
 SELECT SNOWFLAKE.CORTEX.COMPLETE(
     'claude-3-5-sonnet',
     'Clasifique el punto de referencia identificado en esta imagen. Responda en JSON solo con el nombre del punto de referencia',
-    TO_FILE('@myimages', 'lugarb.jpg')
+    TO_FILE('@mgg_files', 'lugarb.jpg')
 );
-
-USE DATABASE BD_AI_CORTEX;
-USE SCHEMA PUBLIC;
-
--- De Audio a Texto desde SQL
-SELECT AI_TRANSCRIBE(TO_FILE('@LLAMADAS', '081725_1349.mp3'),{'timestamp_granularity': 'speaker'});
-
--- Analítica de Sentimiento desde SQL 
-WITH transcriptions AS
-  ( SELECT TO_VARCHAR(AI_TRANSCRIBE(TO_FILE('@LLAMADAS',
-      '081725_1349.mp3'))) AS transcribed_call )
-SELECT
-  AI_SENTIMENT(transcribed_call, ['Profesionalismo', 'Resolución',
-      'Tiempo de Espera']) AS call_sentiment
-FROM transcriptions;
 
 -- Structure Outputs 
 SELECT AI_COMPLETE(
