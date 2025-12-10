@@ -44,35 +44,41 @@ def config_options():
 
     st.sidebar.selectbox('Seleccione el modelo:', (
     'llama3.1-405b',
+    # OPENAI
     'openai-gpt-5',
+    'openai-gpt-5-chat',
     'openai-gpt-5-mini',
     'openai-gpt-5-nano',
-    'openai-gpt-5-chat',
+    'openai-gpt-5-oss-120b',
+    'openai-gpt-5-oss-20b',
     'openai-gpt-4.1',
     'openai-o4-mini',
-    'claude-4-sonnet',
+
+    # CLAUDE
     'claude-4-opus',
-    'llama4-maverick',
-    'llama4-scout',
+    'claude-4-sonnet',
+    'claude-sonnet-4.5',
+    'claude-haiku-4.5',
     'claude-3-7-sonnet',
     'claude-3-5-sonnet',
-    'mixtral-8x7b',
-    'mistral-large2',
-    'llama3.1-70b',
+
+    # DEEPSEEK
+    'deepseek-r1',
+
+    # LLAMA
     'llama3.3-70b',
-    'llama3-70b',
-    'llama2-70b-chat',
-    'mistral-7b',
+    'llama3.1-70b',
     'llama3.1-8b',
-    'llama3-8b',
-    'gemma-7b',
-    'jamba-1.5-large',
-    'jamba-1.5-mini',
-    'jamba-instruct',
-    'llama3.2-3b',
-    'llama3.2-1b',
-    'reka-core',
-    'reka-flash',
+    'llama4-maverick',
+    'llama4-scout',
+
+    # MISTRAL / MIXTRAL / PIXTRAL
+    'mistral-large2',
+    'mistral-7b',
+    'mixtral-8x7b',
+    'pixtral-large',
+
+    # SNOWFLAKE MODELS
     'snowflake-arctic',
     'snowflake-llama-3.1-405b',
     'snowflake-llama-3.3-70b'
