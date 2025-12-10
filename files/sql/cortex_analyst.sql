@@ -8,7 +8,7 @@ CREATE OR REPLACE STAGE CORTEX_ANALYSTSTAGE
 -- ====================================================================
 
 CREATE OR REPLACE SCHEMA revenue_timeseries_banca;
-CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
+--CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
 
 CREATE OR REPLACE TABLE DAILY_REVENUE (
   DATE              DATE,
@@ -101,7 +101,7 @@ COPY INTO DAILY_REVENUE_BY_REGION
 -- ====================================================================
 
 CREATE OR REPLACE SCHEMA revenue_timeseries_seguros;
-CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
+--CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
 
 CREATE OR REPLACE TABLE DAILY_REVENUE (
   DATE              DATE,
@@ -194,7 +194,7 @@ COPY INTO DAILY_REVENUE_BY_REGION
 -- ====================================================================
 
 CREATE OR REPLACE SCHEMA revenue_timeseries_telco;
-CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
+--CREATE STAGE raw_data DIRECTORY = (ENABLE = TRUE);
 
 CREATE OR REPLACE TABLE DAILY_REVENUE (
   DATE              DATE,
