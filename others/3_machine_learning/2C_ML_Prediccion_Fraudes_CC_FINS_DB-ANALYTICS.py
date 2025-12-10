@@ -2,6 +2,16 @@
 # Add the following packages to the Packages dropdown at the top of the UI:
 # plotly, matplotlib, pydeck, snowflake-ml-python, nbformat
 
+# Python Version: 3.11
+# Installed Packages:
+#   altair == 5.5.0
+#   matplotlib == 3.10.0
+#   pydeck == 0.9.1
+#   snowflake-ml-python == 1.11.0
+#   snowflake-snowpark-python == <unspecified>   # Snowflake lo gestiona internamente
+#   streamlit == <unspecified>                   # Version controlada por Snowflake
+
+
 # Import Python packages
 import streamlit as st
 import pydeck as pdk
@@ -50,8 +60,7 @@ queried_data['TRANSACTION_DATE'] = queried_data['TRANSACTION_DATE'].apply(lambda
 # If you need the TRANSACTION_DATE column back in the original string format
 queried_data['TRANSACTION_DATE'] = queried_data['TRANSACTION_DATE'].dt.strftime('%m/%d/%y %H:%M')
 
-st.write(queried_data, use_container_width=True)
-
+st.dataframe(queried_data, use_container_width=True)
 
 def get_custfeatures():
     stmt = f'''WITH 
