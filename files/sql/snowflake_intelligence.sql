@@ -1230,3 +1230,16 @@ FROM SPECIFICATION $$
   }
 }
 $$;
+
+DECLARE user_name STRING;
+
+BEGIN
+  user_name := CURRENT_USER();
+
+  EXECUTE IMMEDIATE
+    'ALTER USER "' || user_name || '" 
+       SET DEFAULT_WAREHOUSE = ''VW_GENAI'', 
+           DEFAULT_ROLE = ''ACCOUNTADMIN''';
+END;
+
+
