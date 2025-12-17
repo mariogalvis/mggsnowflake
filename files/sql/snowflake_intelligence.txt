@@ -15,6 +15,8 @@ Los mejores vendedores son los más antiguos
 ---
 que son las tablas dinámicas y dame un ejemplo para ejecutarlas desde cero
 ---
+Múestrame los viajes por mes y cuales son los días de mayor demanda
+---
 Proporciona un análisis exhaustivo de mi pipeline para el trimestre fiscal actual incluyendo: 1) Resumen ejecutivo con métricas clave (valor total, número de oportunidades, tasa de cierre proyectada), 2) Desglose detallado por etapa de ventas y categoría de forecast con gráfico de barras, 3) Identificación específica de deals en riesgo basado en criterios como: días para cierre <30, engagement limitado, cambios recientes en forecast status, falta de actividad reciente, y 4) Plan de acción priorizado con pasos concretos para mitigar riesgos y acelerar cierres. Incluye visualizaciones que muestren la distribución del pipeline por riesgo y timeline
 Hay algúna historia de clientes en el sector seguros donde Snowflake contribuya en la personalización de usuarios y experiencia de cliente?
 ¿Cuántas oportunidades pasaron a la etapa madura en los últimos 14 días y cuál es su valor ACV total? Proporcióname los detalles de estas oportunidades
