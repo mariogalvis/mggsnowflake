@@ -1,6 +1,6 @@
-SELECT AI_COMPLETE('openai-gpt-5','Que es ABC en Colombia?');
+SELECT snowflake.cortex.complete('openai-gpt-5','Que es ABC en Colombia?');
 
-SELECT AI_COMPLETE( 
+SELECT snowflake.cortex.complete( 
 'gemini-3-pro', 
 'En menos de 100 palabras, enumere lo que se necesita para construir algo similar a la inteligencia de Snowflake que pueda responder preguntas de tipo POR QUÉ o CÓMO encadenando múltiples herramientas y conjuntos de datos y utilizando solo datos comerciales internos estructurados y no estructurados con gobernanza, auditoría y telemetría adecuadas.'
 );
