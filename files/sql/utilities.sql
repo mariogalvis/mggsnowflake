@@ -1,3 +1,7 @@
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
+
 CREATE OR REPLACE TABLE CLIENTES (
   tripduration            INTEGER,
   starttime               TIMESTAMP,
@@ -17,11 +21,11 @@ CREATE OR REPLACE TABLE CLIENTES (
   gender                  INTEGER
 );
 
-CREATE STAGE S3_EXTERNAL_STAGE
+CREATE OR REPLACE STAGE S3_EXTERNAL_STAGE
   URL     = 's3://snowflake-workshop-lab/japan/citibike-trips/'
   COMMENT = 'Stage Externo para el cargado de datos desde Cloud';
 
-CREATE STAGE SF_INTERNAL_STAGE
+CREATE OR REPLACE STAGE SF_INTERNAL_STAGE
   DIRECTORY = (ENABLE = TRUE);
 
 CREATE OR REPLACE FILE FORMAT CSV
@@ -622,8 +626,12 @@ CREATE OR REPLACE USER sofia_fernandez
   PASSWORD     = 'Contrasena123!'
   DEFAULT_ROLE = 'ACCOUNTADMIN';
 
+USE WAREHOUSE VW_GENAI;
+USE DATABASE BD_EMPRESA;
+USE SCHEMA GOLD;
+
 CREATE OR REPLACE NOTEBOOK "Tableros de Control"
-  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/main/6_notebooks/'
+  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/others/4_notebooks/'
   MAIN_FILE = '1_Tableros de Control en Notebooks.ipynb'
   WAREHOUSE = VW_GENAI
   QUERY_WAREHOUSE = VW_GENAI;
@@ -632,7 +640,7 @@ ALTER NOTEBOOK "Tableros de Control"
   SET IDLE_AUTO_SHUTDOWN_TIME_SECONDS = 300; -- 5 minutos
 
 CREATE OR REPLACE NOTEBOOK "Extraccion de Notas"
-  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/main/6_notebooks/'
+  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/others/4_notebooks/'
   MAIN_FILE = '2_Extraccion de Notas.ipynb'
   WAREHOUSE = VW_GENAI
   QUERY_WAREHOUSE = VW_GENAI;
@@ -641,8 +649,8 @@ ALTER NOTEBOOK "Extraccion de Notas"
   SET IDLE_AUTO_SHUTDOWN_TIME_SECONDS = 300; -- 5 minutos
 
 CREATE OR REPLACE NOTEBOOK "Setup Task Graph"
-  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/main/6_notebooks/'
-  MAIN_FILE = 'T_Task_Graph.ipynb'
+  FROM '@BD_EMPRESA.GOLD.MGGSNOWFLAKE_GIT/branches/main/others/4_notebooks/'
+  MAIN_FILE = '4_Setup_Task_Graph.ipynb'
   WAREHOUSE = VW_GENAI
   QUERY_WAREHOUSE = VW_GENAI;
 
