@@ -44,44 +44,47 @@ def config_options():
 
     st.sidebar.selectbox('Seleccione el modelo:', (
     'llama3.1-405b',
-    # OPENAI
-    'openai-gpt-5',
-    'openai-gpt-5-chat',
-    'openai-gpt-5-mini',
-    'openai-gpt-5-nano',
-    'openai-gpt-5-oss-120b',
-    'openai-gpt-5-oss-20b',
-    'openai-gpt-4.1',
-    'openai-o4-mini',
+    # ANTHROPIC / CLAUDE
+        'claude-sonnet-4-5',
+        'claude-opus-4-5',
+        'claude-haiku-4-5',
+        'claude-4-sonnet',
+        'claude-3-7-sonnet',
+        'claude-3-5-sonnet',
 
-    # CLAUDE
-    'claude-4-opus',
-    'claude-4-sonnet',
-    'claude-sonnet-4.5',
-    'claude-haiku-4.5',
-    'claude-3-7-sonnet',
-    'claude-3-5-sonnet',
+        # OPENAI
+        'openai-gpt-4.1',
+        'openai-gpt-5',
+        'openai-gpt-5-mini',
+        'openai-gpt-5-nano',
+        'openai-gpt-5-chat',
+        'openai-gpt-oss-120b',
+        'openai-gpt-oss-20b',
+        
+        # GOOGLE
+        'gemini-3-pro',
 
-    # DEEPSEEK
-    'deepseek-r1',
+        # LLAMA
+        'llama4-maverick',
+        'llama4-scout',
+        'llama3.1-8b',
+        'llama3.1-70b',
+        'llama3.3-70b',
+        'llama3.1-405b',
 
-    # LLAMA
-    'llama3.3-70b',
-    'llama3.1-70b',
-    'llama3.1-8b',
-    'llama4-maverick',
-    'llama4-scout',
+        # SNOWFLAKE MODELS
+        'snowflake-llama-3.3-70b',
+        'snowflake-llama-3.1-405b',
+        'snowflake-arctic',
 
-    # MISTRAL / MIXTRAL / PIXTRAL
-    'mistral-large2',
-    'mistral-7b',
-    'mixtral-8x7b',
-    'pixtral-large',
 
-    # SNOWFLAKE MODELS
-    'snowflake-arctic',
-    'snowflake-llama-3.1-405b',
-    'snowflake-llama-3.3-70b'
+        # DEEPSEEK
+        'deepseek-r1',
+
+        # MISTRAL / MIXTRAL
+        'mistral-large2',
+        'mixtral-8x7b',
+        'mistral-7b'
     ), key="model_name")
     
     categories = session.table('docs_chunks_table').select('category').distinct().collect()
