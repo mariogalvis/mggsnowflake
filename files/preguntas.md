@@ -1,0 +1,24 @@
+¿Cuáles son los documentos básicos requeridos para solicitar un crédito empresarial?
+---
+Muéstrame las ventas mensuales globales de 2025. 
+Explícame porqué tuvimos una subida en ventas de Mayo a Junio?
+Cuáles son los meses que más vendimos y porqué? cuál fue la fuente principal de ese rendimiento?
+Cuáles son los 5 productos principales por ingresos en 2025? muéstrame su rendimiento por región y porqué?
+Qué podemos mejorar?
+Qué campañas de marketing generaron más ingresos en 2025? muéstrame el ROI de marketing y coste por lead por canal
+¿Cuáles son nuestros principales gastos de proveedores? Consulta nuestra política de gestión de proveedores: ¿seguimos las directrices de contratación?
+Analice el contenido de https://www.honeywell.com/ y compare su oferta de productos con nuestro catálogo
+Los mejores vendedores son los más antiguos
+crea un modelo de forecasting para predecir el número de viajes por estación, muestra gráficas predictivas y explica el paso a paso, toma los datos de BD_Empresa
+-----
+quiero que uses los datos de la base de datos mg_coco y el esquema fraud_detection y crees un app en streamlit básica y simple con un dashboard principal de kpis
+___________
+que son las tablas dinámicas y dame un ejemplo para ejecutarlas desde cero
+---
+Múestrame los viajes por mes y cuales son los días de mayor demanda
+---
+Proporciona un análisis exhaustivo de mi pipeline para el trimestre fiscal actual incluyendo: 1) Resumen ejecutivo con métricas clave (valor total, número de oportunidades, tasa de cierre proyectada), 2) Desglose detallado por etapa de ventas y categoría de forecast con gráfico de barras, 3) Identificación específica de deals en riesgo basado en criterios como: días para cierre <30, engagement limitado, cambios recientes en forecast status, falta de actividad reciente, y 4) Plan de acción priorizado con pasos concretos para mitigar riesgos y acelerar cierres. Incluye visualizaciones que muestren la distribución del pipeline por riesgo y timeline
+Hay algúna historia de clientes en el sector seguros donde Snowflake contribuya en la personalización de usuarios y experiencia de cliente?
+¿Cuántas oportunidades pasaron a la etapa madura en los últimos 14 días y cuál es su valor ACV total? Proporcióname los detalles de estas oportunidades
+
+Cup noodle
