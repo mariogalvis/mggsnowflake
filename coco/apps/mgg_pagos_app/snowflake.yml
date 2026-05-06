@@ -1,0 +1,22 @@
+definition_version: 2
+entities:
+  mgg_pagos:
+    type: streamlit
+    identifier:
+      name: MGG_PAGOS
+      database: MGG_PAGOS
+      schema: PUBLIC
+    title: "MGG PAGOS"
+    query_warehouse: VW_GENAI
+    runtime_name: SYSTEM$ST_CONTAINER_RUNTIME_PY3_11
+    compute_pool: SYSTEM_COMPUTE_POOL_CPU
+    external_access_integrations:
+      - PYPI_ACCESS_INTEGRATION
+    main_file: streamlit_app.py
+    artifacts:
+      - streamlit_app.py
+      - use_case_layout.py
+      - pyproject.toml
+      - .streamlit/config.toml
+      - static/*
+      - app_pages/*

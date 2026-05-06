@@ -1,0 +1,13 @@
+definition_version: 2
+entities:
+  seguros_dashboard:
+    type: streamlit
+    identifier:
+      name: SEGUROS_DASHBOARD
+      database: MGG_SEGUROS
+      schema: PUBLIC
+    query_warehouse: COMPUTE_WH
+    main_file: streamlit_app.py
+    artifacts:
+      - streamlit_app.py
+      - pyproject.toml

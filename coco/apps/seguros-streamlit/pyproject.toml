@@ -1,0 +1,11 @@
+[project]
+name = "seguros-dashboard"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "snowflake-connector-python>=3.3.0",
+    "streamlit>=1.41.0",
+    "plotly>=5.18.0",
+    "pydeck>=0.8.0",
+    "pandas>=2.0.0",
+]
